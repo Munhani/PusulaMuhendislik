@@ -1,9 +1,9 @@
 {
   "pages": {
-    "/page": [
+    "/realitymodel/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/chunks/app/realitymodel/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
@@ -21,30 +21,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/_not-found/page": [
+    "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
-    ],
-    "/realitymodel/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/realitymodel/page.js"
-    ],
-    "/hizmetler/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/hizmetler/page.js"
+      "static/chunks/app/page.js"
     ],
     "/hakkimizda/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/hakkimizda/page.js"
     ],
-    "/iletisim/page": [
+    "/hizmetler/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/iletisim/page.js"
+      "static/chunks/app/hizmetler/page.js"
     ]
   }
 }

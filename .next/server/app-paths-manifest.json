@@ -1,9 +1,5 @@
 {
   "/page": "app/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
   "/realitymodel/page": "app/realitymodel/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/hizmetler/page": "app/hizmetler/page.js",
-  "/hakkimizda/page": "app/hakkimizda/page.js",
-  "/iletisim/page": "app/iletisim/page.js"
+  "/favicon.ico/route": "app/favicon.ico/route.js"
 }
