@@ -43,7 +43,7 @@ export default function RealityModel() {
                     href="/01_103_1_20250416_3MX/App/index.html" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="block text-center bg-blue-900 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base w-full h-full"
+                    className="block text-center bg-blue-900 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base w-full h-1/2"
                   >
                     Durusu
                   </a>
