@@ -3,109 +3,57 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative">
-        <HeroSlider />
-      </section>
+    <main className="min-h-screen py-8 md:py-16">
+      <div className="container mx-auto px-4">
+        <h1 className="text-2xl md:text-4xl font-bold text-center mb-6 md:mb-12 text-blue-900">
+          Pusula Mühendislik
+        </h1>
+        
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white rounded-lg shadow-lg p-4 md:p-8 mb-6 md:mb-8">
+            <h2 className="text-lg md:text-2xl font-semibold mb-3 md:mb-4 text-blue-800">
+              Hizmetlerimiz
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+              <div className="bg-white p-4 md:p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4">Kadastro İşleri</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-center">
+                    <span className="text-blue-900 mr-2">•</span>
+                    <span className="text-sm md:text-base">İfraz ve Tevhid İşlemleri</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-blue-900 mr-2">•</span>
+                    <span className="text-sm md:text-base">Yola Terk İşlemleri</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-blue-900 mr-2">•</span>
+                    <span className="text-sm md:text-base">Yoldan İhdas İşlemleri</span>
+                  </li>
+                </ul>
+              </div>
 
-      {/* Hizmetler Section */}
-      <section className="py-16 md:py-20 bg-gray-50" aria-labelledby="hizmetler-baslik">
-        <div className="container mx-auto px-4">
-          <h2 id="hizmetler-baslik" className="text-3xl font-bold text-center mb-12">Hizmetlerimiz</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Mühendislik Hizmetleri */}
-            <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-xl font-semibold mb-4">Mühendislik Hizmetleri</h3>
-              <ul className="space-y-2">
-                <li className="flex items-center">
-                  <span className="text-blue-900 mr-2">•</span>
-                  Yol ve Kavşak Projeleri
-                </li>
-                <li className="flex items-center">
-                  <span className="text-blue-900 mr-2">•</span>
-                  Kentsel Dönüşüm İşleri
-                </li>
-                <li className="flex items-center">
-                  <span className="text-blue-900 mr-2">•</span>
-                  Altyapı Projeleri
-                </li>
-              </ul>
-            </div>
-
-            {/* Kadastro İşleri */}
-            <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-xl font-semibold mb-4">Kadastro İşleri</h3>
-              <ul className="space-y-2">
-                <li className="flex items-center">
-                  <span className="text-blue-900 mr-2">•</span>
-                  İfraz ve Tevhid İşlemleri
-                </li>
-                <li className="flex items-center">
-                  <span className="text-blue-900 mr-2">•</span>
-                  Yola Terk İşlemleri
-                </li>
-                <li className="flex items-center">
-                  <span className="text-blue-900 mr-2">•</span>
-                  Yoldan İhdas İşlemleri
-                </li>
-              </ul>
-            </div>
-
-            {/* Haritacılık Hizmetleri */}
-            <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-xl font-semibold mb-4">Haritacılık Hizmetleri</h3>
-              <ul className="space-y-2">
-                <li className="flex items-center">
-                  <span className="text-blue-900 mr-2">•</span>
-                  Özel Parselasyon Planları
-                </li>
-                <li className="flex items-center">
-                  <span className="text-blue-900 mr-2">•</span>
-                  Plankote ve Halihazır Harita
-                </li>
-                <li className="flex items-center">
-                  <span className="text-blue-900 mr-2">•</span>
-                  Aplikasyon İşlemleri
-                </li>
-              </ul>
+              <div className="bg-white p-4 md:p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4">Haritacılık Hizmetleri</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-center">
+                    <span className="text-blue-900 mr-2">•</span>
+                    <span className="text-sm md:text-base">Özel Parselasyon Planları</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-blue-900 mr-2">•</span>
+                    <span className="text-sm md:text-base">Plankote ve Halihazır Harita</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-blue-900 mr-2">•</span>
+                    <span className="text-sm md:text-base">Aplikasyon İşlemleri</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Katalog Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-900 to-blue-700 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10"></div>
-        <div className="container mx-auto px-4 relative">
-          <div className="max-w-3xl mx-auto text-center">
-            <a 
-              href="/Katalog.pdf" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-block bg-white text-blue-900 px-8 py-4 rounded-lg text-xl font-semibold 
-                transform transition-all duration-300 hover:scale-105 hover:shadow-2xl 
-                hover:bg-blue-50 hover:text-blue-900"
-            >
-              Katalog İçin Tıklayın
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Hakkımızda Section */}
-      <section className="py-16 md:py-20" aria-labelledby="hakkimizda-baslik">
-        <div className="container mx-auto px-4">
-          <h2 id="hakkimizda-baslik" className="text-3xl font-bold text-center mb-12">Hakkımızda</h2>
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-lg text-gray-700">
-              Pusula Mühendislik olarak, mühendislik ve haritacılık alanında uzman kadromuzla 
-              müşterilerimize en kaliteli hizmeti sunmayı hedefliyoruz. Modern teknoloji ve 
-              yenilikçi çözümlerle, projelerinizi hayata geçiriyoruz.
-            </p>
-          </div>
-        </div>
-      </section>
+      </div>
     </main>
   );
 }
