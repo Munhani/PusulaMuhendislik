@@ -6,21 +6,27 @@ import Image from 'next/image';
 const slides = [
   {
     id: 1,
-    image: '/images/slide1.jpg',
-    title: 'Profesyonel Mühendislik Çözümleri',
-    description: 'Modern teknoloji ve uzman kadromuzla projelerinizi hayata geçiriyoruz.'
+    image: '/images/BakuAirport.jpg',
+    title: 'Bakü Havalimanı Kavşak Projesi',
+    description: 'Modern ve Etkileyici Yol Tasarımı'
   },
   {
     id: 2,
-    image: '/images/slide2.jpg',
-    title: 'Haritacılık Hizmetleri',
-    description: 'En son teknolojik cihazlarla hassas ölçüm ve haritalama hizmetleri.'
+    image: '/images/BineKavsagi.jpg',
+    title: 'Bine Kavşak Projesi',
+    description: 'Profesyonel Mühendislik Çözümleri'
   },
   {
     id: 3,
-    image: '/images/slide3.jpg',
-    title: 'Kadastro İşlemleri',
-    description: 'Güvenilir ve hızlı kadastro çözümleri.'
+    image: '/images/EdirneSirpsindigiKopru.jpg',
+    title: 'Edirne Sırpsındığı Köprüsü',
+    description: 'Mühendislik Harikası Köprü Projesi'
+  },
+  {
+    id: 4,
+    image: '/images/FatihYayaUstGecidi.jpg',
+    title: 'Fatih Yaya Üst Geçidi',
+    description: 'Modern Şehir Ulaşım Çözümleri'
   }
 ];
 
