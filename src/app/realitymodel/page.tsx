@@ -20,22 +20,34 @@ export default function RealityModel() {
             </p>
             <div className="mt-4 md:mt-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto">
-                <a 
-                  href="/01_KiptasKavsak_20240903_3MX/App/index.html" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block text-center bg-blue-900 text-white px-6 py-3 rounded-lg hover:bg-blue-800 transition-colors text-base"
-                >
-                  ArnavutkoyKiptaş
-                </a>
-                <a 
-                  href="/01_103_1_20250416_3MX/App/index.html" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block text-center bg-blue-900 text-white px-6 py-3 rounded-lg hover:bg-blue-800 transition-colors text-base"
-                >
-                  Durusu
-                </a>
+                <div className="flex flex-col justify-center">
+                  <a 
+                    href="/01_KiptasKavsak_20240903_3MX/App/index.html" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block text-center bg-blue-900 text-white px-6 py-3 rounded-lg hover:bg-blue-800 transition-colors text-base"
+                  >
+                    ArnavutkoyKiptaş
+                  </a>
+                  <a 
+                    href="https://youtu.be/pD80sTSVh84" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block text-center bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors text-base mt-3"
+                  >
+                    Arnavutköy Kiptaş Video
+                  </a>
+                </div>
+                <div className="flex items-start">
+                  <a 
+                    href="/01_103_1_20250416_3MX/App/index.html" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block text-center bg-blue-900 text-white px-6 py-3 rounded-lg hover:bg-blue-800 transition-colors text-base w-full h-1/2"
+                  >
+                    Durusu
+                  </a>
+                </div>
               </div>
             </div>
           </div>
