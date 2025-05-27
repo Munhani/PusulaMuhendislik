@@ -35,14 +35,14 @@ export default function HeroSlider() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      setCurrentSlide((prev: number) => (prev + 1) % slides.length);
     }, 5000);
 
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="relative h-[500px] md:h-[600px] overflow-hidden">
+    <div className="relative h-[500px] md:h-[600px] overflow-hidden" role="region" aria-label="Proje Sliderı" aria-live="polite">
       {slides.map((slide, index) => (
         <div
           key={slide.id}
@@ -53,7 +53,7 @@ export default function HeroSlider() {
           <div className="relative w-full h-full">
             <Image
               src={slide.image}
-              alt={slide.title}
+              alt={`Pusula Mühendislik Projesi: ${slide.title} - ${slide.description}`}
               fill
               className="object-cover"
               priority={index === 0}
@@ -79,6 +79,8 @@ export default function HeroSlider() {
               index === currentSlide ? 'bg-white' : 'bg-white/50'
             }`}
             aria-label={`Slide ${index + 1}`}
+            aria-pressed={index === currentSlide}
+            tabIndex={0}
           />
         ))}
       </div>

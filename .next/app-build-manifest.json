@@ -30,6 +30,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/realitymodel/page.js"
+    ],
+    "/hakkimizda/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/hakkimizda/page.js"
     ]
   }
 }
