@@ -4,6 +4,7 @@ import Link from "next/link";
 import MobileMenu from "@/components/MobileMenu";
 import Image from "next/image";
 import { FaLinkedin, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -178,6 +179,7 @@ export default function RootLayout({
             </div>
           </div>
         </footer>
+        <Analytics />
       </body>
     </html>
   );
