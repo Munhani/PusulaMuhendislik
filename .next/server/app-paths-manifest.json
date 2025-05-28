@@ -1,7 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/realitymodel/page": "app/realitymodel/page.js",
-  "/hakkimizda/page": "app/hakkimizda/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js"
-}
