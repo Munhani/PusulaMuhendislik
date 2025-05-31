@@ -1,9 +1,50 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy, useEffect } from 'react';
+import dynamic from 'next/dynamic';
+import { modelCache } from './modelCache';
+
+// Lazy load video modal
+const VideoModal = dynamic(() => import('./VideoModal'), {
+  loading: () => <div className="animate-pulse bg-gray-200 h-96 rounded-lg"></div>,
+  ssr: false
+});
+
+// Model yükleme durumu için loading component
+const ModelLoading = () => (
+  <div className="animate-pulse bg-gray-200 h-64 rounded-lg flex items-center justify-center">
+    <div className="text-gray-500">Model yükleniyor...</div>
+  </div>
+);
 
 export default function RealityModelClient() {
   const [showVideo, setShowVideo] = useState(false);
+  const [isModelLoaded, setIsModelLoaded] = useState<{[key: string]: boolean}>({});
+
+  // Model önbelleğe alma fonksiyonu
+  const cacheModel = (modelId: string) => {
+    if (!modelCache.has(modelId)) {
+      modelCache.set(modelId, { loaded: true });
+      setIsModelLoaded(prev => ({
+        ...prev,
+        [modelId]: true
+      }));
+    }
+  };
+
+  // Sayfa yüklendiğinde önbellekteki modelleri kontrol et
+  useEffect(() => {
+    const cachedModels = ['kiptas', 'durusu', 'esenyurt'];
+    cachedModels.forEach(modelId => {
+      if (modelCache.has(modelId)) {
+        setIsModelLoaded(prev => ({
+          ...prev,
+          [modelId]: true
+        }));
+      }
+    });
+  }, []);
+
   return (
     <div className="max-w-4xl mx-auto">
       <div className="bg-white rounded-lg shadow-lg p-4 md:p-8 mb-6 md:mb-8">
@@ -18,14 +59,17 @@ export default function RealityModelClient() {
         <div className="mt-4 md:mt-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto">
             <div className="flex flex-col justify-center">
-              <a 
-                href="/01_KiptasKavsak_20240903_3MX/App/index.html" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="block text-center bg-blue-900 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base"
-              >
-                Arnavutköy Kiptaş
-              </a>
+              <Suspense fallback={<ModelLoading />}>
+                <a 
+                  href="/01_KiptasKavsak_20240903_3MX/App/index.html" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={`block text-center bg-blue-900 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base ${isModelLoaded['kiptas'] ? 'opacity-100' : 'opacity-75'}`}
+                  onClick={() => cacheModel('kiptas')}
+                >
+                  Arnavutköy Kiptaş
+                </a>
+              </Suspense>
               <button
                 onClick={() => setShowVideo(true)}
                 className="block text-center bg-red-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg hover:bg-red-700 transition-colors text-sm md:text-base mt-3"
@@ -33,43 +77,39 @@ export default function RealityModelClient() {
                 Arnavutköy Kiptaş Video
               </button>
             </div>
-            <div className="flex items-start">
-              <a 
-                href="/01_103_1_20250416_3MX/App/index.html" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="block text-center bg-blue-900 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base w-full"
-              >
-                Durusu
-              </a>
+            <div className="flex flex-col justify-center gap-3">
+              <Suspense fallback={<ModelLoading />}>
+                <a 
+                  href="/01_103_1_20250416_3MX/App/index.html" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={`block text-center bg-blue-900 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base w-full ${isModelLoaded['durusu'] ? 'opacity-100' : 'opacity-75'}`}
+                  onClick={() => cacheModel('durusu')}
+                >
+                  Durusu
+                </a>
+              </Suspense>
+              <Suspense fallback={<ModelLoading />}>
+                <a 
+                  href="/01_300_5_20250315_3MX/App/index.html" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={`block text-center bg-blue-900 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base w-full ${isModelLoaded['esenyurt'] ? 'opacity-100' : 'opacity-75'}`}
+                  onClick={() => cacheModel('esenyurt')}
+                >
+                  Esenyurt
+                </a>
+              </Suspense>
             </div>
           </div>
         </div>
       </div>
+      
       {/* Video Modal */}
       {showVideo && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
-          <div className="bg-white rounded-lg shadow-lg p-4 md:p-8 relative max-w-2xl w-full">
-            <button
-              onClick={() => setShowVideo(false)}
-              className="absolute top-2 right-2 text-gray-700 hover:text-red-600 text-2xl font-bold"
-              aria-label="Kapat"
-            >
-              ×
-            </button>
-            <div className="aspect-w-16 aspect-h-9 w-full">
-              <iframe
-                width="100%"
-                height="400"
-                src="https://www.youtube.com/embed/pD80sTSVh84"
-                title="Arnavutköy Kiptaş Video"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          </div>
-        </div>
+        <Suspense fallback={<div className="animate-pulse bg-gray-200 h-96 rounded-lg"></div>}>
+          <VideoModal onClose={() => setShowVideo(false)} />
+        </Suspense>
       )}
     </div>
   );
