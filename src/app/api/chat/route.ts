@@ -15,38 +15,53 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Oturum açmanız gerekiyor' }, { status: 401 });
     }
 
-    const { messages } = await req.json();
+    const { messages, model = 'gpt-3.5-turbo' } = await req.json();
 
     if (!messages || !Array.isArray(messages)) {
       return NextResponse.json({ error: 'Geçersiz mesaj formatı' }, { status: 400 });
     }
 
-    // Son mesajı al
-    const lastMessage = messages[messages.length - 1];
-    if (!lastMessage || !lastMessage.content) {
-      return NextResponse.json({ error: 'Mesaj içeriği gerekli' }, { status: 400 });
+    // Kullanıcının kredilerini kontrol et
+    const user = await prisma.user.findUnique({
+      where: { id: session.user.id },
+      select: { credits: true }
+    });
+
+    if (!user || user.credits <= 0) {
+      return NextResponse.json({ error: 'Yetersiz kredi' }, { status: 402 });
     }
 
-    // OpenAI'dan yanıt al
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4",
+    // Kredi kullanımını kaydet
+    await prisma.creditUsage.create({
+      data: {
+        userId: session.user.id,
+        amount: 1,
+        type: 'CHAT',
+        model: model
+      }
+    });
+
+    // Kullanıcının kredisini güncelle
+    await prisma.user.update({
+      where: { id: session.user.id },
+      data: { credits: { decrement: 1 } }
+    });
+
+    const response = await openai.chat.completions.create({
+      model,
       messages: messages.map((msg: any) => ({
         role: msg.role,
-        content: msg.content,
+        content: msg.content
       })),
       temperature: 0.7,
       max_tokens: 1000,
     });
 
-    const assistantMessage = completion.choices[0].message;
-
-    return NextResponse.json({
-      message: assistantMessage,
-    });
-  } catch (error) {
+    return NextResponse.json(response.choices[0].message);
+  } catch (error: any) {
     console.error('Chat API Error:', error);
     return NextResponse.json(
-      { error: 'Bir hata oluştu' },
+      { error: error.message || 'Bir hata oluştu' },
       { status: 500 }
     );
   }
