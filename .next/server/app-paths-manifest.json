@@ -2,7 +2,7 @@
   "/page": "app/page.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
   "/not-found": "app/not-found.js",
-  "/realitymodel/page": "app/realitymodel/page.js",
-  "/iletisim/page": "app/iletisim/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js"
+  "/hakkimizda/page": "app/hakkimizda/page.js",
+  "/api/contact/route": "app/api/contact/route.js",
+  "/iletisim/page": "app/iletisim/page.js"
 }

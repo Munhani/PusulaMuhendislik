@@ -13,6 +13,7 @@ import { Analytics } from '@vercel/analytics/react';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://pusulamuhendislik.com'),
   title: {
     default: "Pusula Mühendislik | Profesyonel Mühendislik ve Haritacılık Çözümleri",
     template: "%s | Pusula Mühendislik"
