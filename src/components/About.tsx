@@ -6,19 +6,12 @@ export default function About() {
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-<<<<<<< HEAD
           <div className="flex-1 relative h-[300px] sm:h-[350px] md:h-[400px] w-full">
-=======
-          <div className="flex-1 relative h-[400px] w-full">
->>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
             <Image
               src="/images/about.jpg"
               alt="Pusula Mühendislik Hakkında"
               fill
-<<<<<<< HEAD
               sizes="(max-width: 768px) 100vw, 50vw"
-=======
->>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
               className="object-cover rounded-lg shadow-lg"
             />
           </div>
