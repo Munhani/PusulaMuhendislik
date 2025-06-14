@@ -13,7 +13,6 @@ import { Analytics } from '@vercel/analytics/react';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-<<<<<<< HEAD
   metadataBase: new URL('https://pusulamuhendislik.com'),
   title: {
     default: 'Pusula Mühendislik',
@@ -34,10 +33,6 @@ export const metadata: Metadata = {
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png"
   }
-=======
-  title: "Pusula - Yapay Zeka Destekli Sohbet",
-  description: "Yapay zeka destekli sohbet uygulaması",
->>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 };
 
 export default async function RootLayout({
