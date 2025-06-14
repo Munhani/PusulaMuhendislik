@@ -22,12 +22,18 @@
       "static/chunks/app/not-found.js"
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
     "/realitymodel/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/realitymodel/page.js"
     ],
+<<<<<<< HEAD
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
     "/hakkimizda/page": [
       "static/chunks/webpack.js",
@@ -40,11 +46,14 @@
       "static/chunks/app/hizmetler/page.js"
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "/realitymodel/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/realitymodel/page.js"
     ],
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
     "/iletisim/page": [
@@ -53,11 +62,14 @@
       "static/chunks/app/iletisim/page.js"
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "/iletisim/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/iletisim/layout.js"
 =======
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
     "/auth/signin/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -67,6 +79,9 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/_not-found/page.js"
+<<<<<<< HEAD
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
     ]
   }

@@ -82,6 +82,7 @@ model CreditUsage {
   model     String?
   createdAt DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+<<<<<<< HEAD
 }
 
 model Contact {
@@ -92,4 +93,6 @@ model Contact {
   subject   String
   message   String
   createdAt DateTime @default(now())
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 } 

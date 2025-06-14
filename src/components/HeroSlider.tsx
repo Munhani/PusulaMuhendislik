@@ -8,33 +8,49 @@ const slides = [
     id: 1,
     image: '/images/BakuAirport.jpg',
     title: 'Bakü Havalimanı Kavşak Projesi',
+<<<<<<< HEAD
     description: 'Modern ve Etkileyici Yol Tasarımı',
     width: 1920,
     height: 1080
+=======
+    description: 'Modern ve Etkileyici Yol Tasarımı'
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
   },
   {
     id: 2,
     image: '/images/BineKavsagi.jpg',
     title: 'Bine Kavşak Projesi',
+<<<<<<< HEAD
     description: 'Profesyonel Mühendislik Çözümleri',
     width: 1920,
     height: 1080
+=======
+    description: 'Profesyonel Mühendislik Çözümleri'
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
   },
   {
     id: 3,
     image: '/images/EdirneSirpsindigiKopru.jpg',
     title: 'Edirne Sırpsındığı Köprüsü',
+<<<<<<< HEAD
     description: 'Mühendislik Harikası Köprü Projesi',
     width: 1920,
     height: 1080
+=======
+    description: 'Mühendislik Harikası Köprü Projesi'
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
   },
   {
     id: 4,
     image: '/images/FatihYayaUstGecidi.jpg',
     title: 'Fatih Yaya Üst Geçidi',
+<<<<<<< HEAD
     description: 'Modern Şehir Ulaşım Çözümleri',
     width: 1920,
     height: 1080
+=======
+    description: 'Modern Şehir Ulaşım Çözümleri'
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
   }
 ];
 
@@ -63,11 +79,16 @@ export default function HeroSlider() {
               src={slide.image}
               alt={`Pusula Mühendislik Projesi: ${slide.title} - ${slide.description}`}
               fill
+<<<<<<< HEAD
               sizes="100vw"
               quality={85}
               priority={index === 0}
               className="object-cover"
               loading={index === 0 ? "eager" : "lazy"}
+=======
+              className="object-cover"
+              priority={index === 0}
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
             />
             <div className="absolute inset-0 bg-black/40" />
             <div className="absolute inset-0 flex items-center justify-center">

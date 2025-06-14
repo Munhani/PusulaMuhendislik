@@ -43,15 +43,23 @@ export default function Services() {
               key={service.id}
               href={service.link}
               className="group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+<<<<<<< HEAD
               role="listitem"
               aria-label={`${service.title} hizmeti hakkında daha fazla bilgi`}
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
             >
               <div className="relative h-48">
                 <Image
                   src={service.image}
+<<<<<<< HEAD
                   alt={`${service.title} hizmeti görseli`}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+=======
+                  alt={service.title}
+                  fill
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>

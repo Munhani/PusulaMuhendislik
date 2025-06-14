@@ -1,6 +1,7 @@
 {
   "/page": "app/page.js",
 <<<<<<< HEAD
+<<<<<<< HEAD
   "/not-found": "app/not-found.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
   "/hakkimizda/page": "app/hakkimizda/page.js",
@@ -8,6 +9,8 @@
   "/hizmetler/page": "app/hizmetler/page.js",
   "/iletisim/page": "app/iletisim/page.js"
 =======
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
   "/realitymodel/page": "app/realitymodel/page.js",
   "/hakkimizda/page": "app/hakkimizda/page.js",
   "/iletisim/page": "app/iletisim/page.js",
@@ -16,5 +19,8 @@
   "/favicon.ico/route": "app/favicon.ico/route.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
   "/hizmetler/page": "app/hizmetler/page.js"
+<<<<<<< HEAD
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 }

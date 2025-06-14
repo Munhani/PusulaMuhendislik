@@ -179,15 +179,21 @@
 /******/ 	/* webpack/runtime/get mini-css chunk filename */
 /******/ 	!function() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******/ 		// This function allow to reference all chunks
 /******/ 		__webpack_require__.miniCssF = function(chunkId) {
 /******/ 			// return url for filenames based on template
 /******/ 			return "static/css/" + chunkId + ".css";
 =======
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.miniCssF = function(chunkId) {
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
+<<<<<<< HEAD
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 /******/ 		};
 /******/ 	}();
@@ -200,7 +206,11 @@
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	!function() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******/ 		__webpack_require__.h = function() { return "c6780b2ae0a98264"; }
+=======
+/******/ 		__webpack_require__.h = function() { return "3946608a280750e2"; }
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 /******/ 		__webpack_require__.h = function() { return "3946608a280750e2"; }
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
@@ -249,6 +259,10 @@
 /******/ 				}
 /******/ 				script.setAttribute("data-webpack", dataWebpackPrefix + key);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+/******/ 		
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 /******/ 		
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
@@ -342,7 +356,10 @@
 /******/ 		var queuedInvalidatedModules;
 /******/ 		
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******/ 		// eslint-disable-next-line no-unused-vars
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 /******/ 		__webpack_require__.hmrD = currentModuleData;
@@ -406,8 +423,13 @@
 /******/ 				}
 /******/ 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******/ 			fn.e = function (chunkId) {
 /******/ 				return trackBlockingPromise(require.e(chunkId));
+=======
+/******/ 			fn.e = function (chunkId, fetchPriority) {
+/******/ 				return trackBlockingPromise(require.e(chunkId, fetchPriority));
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 /******/ 			fn.e = function (chunkId, fetchPriority) {
 /******/ 				return trackBlockingPromise(require.e(chunkId, fetchPriority));
@@ -604,8 +626,12 @@
 /******/ 								);
 /******/ 								return promises;
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******/ 							},
 /******/ 							[])
+=======
+/******/ 							}, [])
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 /******/ 							}, [])
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266

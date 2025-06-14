@@ -35,12 +35,16 @@ const nextConfig = {
     ]
   },
   images: {
+<<<<<<< HEAD
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'pusulamuhendislik.com',
       },
     ],
+=======
+    domains: ['pusulamuhendislik.com'],
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
   },
   output: 'standalone',
   env: {

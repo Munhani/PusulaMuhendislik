@@ -1,6 +1,10 @@
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
 <<<<<<< HEAD
+<<<<<<< HEAD
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[11].oneOf[2].use[1]!./node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js??ruleSet[1].rules[11].oneOf[2].use[2]!./node_modules/next/font/google/target.css?{"path":"src\\app\\layout.tsx","import":"Inter","arguments":[{"subsets":["latin"]}],"variableName":"inter"} ***!
+=======
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[2].use[1]!./node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js??ruleSet[1].rules[14].oneOf[2].use[2]!./node_modules/next/font/google/target.css?{"path":"src\\app\\layout.tsx","import":"Inter","arguments":[{"subsets":["latin"]}],"variableName":"inter"} ***!
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[2].use[1]!./node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js??ruleSet[1].rules[14].oneOf[2].use[2]!./node_modules/next/font/google/target.css?{"path":"src\\app\\layout.tsx","import":"Inter","arguments":[{"subsets":["latin"]}],"variableName":"inter"} ***!
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
@@ -68,7 +72,11 @@
   src: url(/_next/static/media/e4af272ccee01ff0-s.p.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 <<<<<<< HEAD
+<<<<<<< HEAD
 }@font-face {font-family: '__Inter_Fallback_e8ce0c';src: local("Arial");ascent-override: 90.20%;descent-override: 22.48%;line-gap-override: 0.00%;size-adjust: 107.40%
+=======
+}@font-face {font-family: '__Inter_Fallback_e8ce0c';src: local("Arial");ascent-override: 90.49%;descent-override: 22.56%;line-gap-override: 0.00%;size-adjust: 107.06%
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 }@font-face {font-family: '__Inter_Fallback_e8ce0c';src: local("Arial");ascent-override: 90.49%;descent-override: 22.56%;line-gap-override: 0.00%;size-adjust: 107.06%
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
@@ -77,7 +85,11 @@
 
 /*!*****************************************************************************************************************************************************************************************************************************************************************!*\
 <<<<<<< HEAD
+<<<<<<< HEAD
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[11].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[11].oneOf[12].use[3]!./src/app/globals.css ***!
+=======
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/app/globals.css ***!
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/app/globals.css ***!
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
@@ -710,6 +722,12 @@ video {
   top: 100%;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+.z-10 {
+  z-index: 10;
+}
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 .z-10 {
   z-index: 10;
@@ -747,12 +765,15 @@ video {
   margin-right: 0.5rem;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .mr-3 {
   margin-right: 0.75rem;
 }
 .mt-1 {
   margin-top: 0.25rem;
 }
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .mt-3 {
@@ -762,6 +783,7 @@ video {
   margin-top: 1rem;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .mt-6 {
   margin-top: 1.5rem;
 }
@@ -769,6 +791,8 @@ video {
   margin-top: 2rem;
 }
 =======
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .mt-8 {
   margin-top: 2rem;
 }
@@ -778,6 +802,9 @@ video {
 .mt-1 {
   margin-top: 0.25rem;
 }
+<<<<<<< HEAD
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .block {
   display: block;
@@ -794,6 +821,7 @@ video {
 .hidden {
   display: none;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 .h-16 {
   height: 4rem;
@@ -820,6 +848,8 @@ video {
   height: 300px;
 }
 =======
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .aspect-video {
   aspect-ratio: 16 / 9;
 }
@@ -832,6 +862,9 @@ video {
 .h-6 {
   height: 1.5rem;
 }
+<<<<<<< HEAD
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .h-\[400px\] {
   height: 400px;
@@ -840,12 +873,15 @@ video {
   height: 500px;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .h-\[600px\] {
   height: 600px;
 }
 .h-full {
   height: 100%;
 =======
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .h-full {
   height: 100%;
 }
@@ -863,6 +899,9 @@ video {
 }
 .h-48 {
   height: 12rem;
+<<<<<<< HEAD
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 }
 .min-h-screen {
@@ -872,9 +911,12 @@ video {
   width: 4rem;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .w-2 {
   width: 0.5rem;
 }
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .w-24 {
@@ -893,6 +935,12 @@ video {
   width: 100%;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+.w-2 {
+  width: 0.5rem;
+}
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 .w-2 {
   width: 0.5rem;
@@ -928,7 +976,10 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
@@ -950,6 +1001,9 @@ video {
 .animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+<<<<<<< HEAD
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 @keyframes bounce {
 
@@ -966,6 +1020,7 @@ video {
 .animate-bounce {
   animation: bounce 1s infinite;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 @keyframes pulse {
 
@@ -988,6 +1043,10 @@ video {
 .resize {
   resize: both;
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
+.resize {
+  resize: both;
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 }
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -996,6 +1055,12 @@ video {
   flex-direction: column;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+.flex-wrap {
+  flex-wrap: wrap;
+}
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 .flex-wrap {
   flex-wrap: wrap;
@@ -1020,9 +1085,12 @@ video {
   justify-content: space-between;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .gap-2 {
   gap: 0.5rem;
 }
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .gap-3 {
@@ -1038,6 +1106,12 @@ video {
   gap: 2rem;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+.gap-2 {
+  gap: 0.5rem;
+}
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 .gap-2 {
   gap: 0.5rem;
@@ -1049,11 +1123,14 @@ video {
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .space-x-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(1rem * var(--tw-space-x-reverse));
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
 }
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .space-x-6 > :not([hidden]) ~ :not([hidden]) {
@@ -1082,12 +1159,18 @@ video {
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .space-y-8 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
 }
+<<<<<<< HEAD
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .space-y-6 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
@@ -1095,15 +1178,21 @@ video {
   margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .space-y-8 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
 =======
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .space-x-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(1rem * var(--tw-space-x-reverse));
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+<<<<<<< HEAD
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 }
 .overflow-hidden {
@@ -1161,6 +1250,12 @@ video {
   background-color: rgb(0 0 0 / 0.4);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+.bg-black\/50 {
+  background-color: rgb(0 0 0 / 0.5);
+}
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 .bg-black\/50 {
   background-color: rgb(0 0 0 / 0.5);
@@ -1175,6 +1270,7 @@ video {
   background-color: rgb(30 58 138 / var(--tw-bg-opacity, 1));
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .bg-gray-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
@@ -1187,6 +1283,8 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(156 163 175 / var(--tw-bg-opacity, 1));
 }
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .bg-gray-50 {
@@ -1220,7 +1318,10 @@ video {
   background-color: rgb(255 255 255 / 0.8);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .bg-gray-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity, 1));
@@ -1233,6 +1334,9 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(156 163 175 / var(--tw-bg-opacity, 1));
 }
+<<<<<<< HEAD
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .bg-opacity-30 {
   --tw-bg-opacity: 0.3;
@@ -1247,6 +1351,12 @@ video {
   --tw-bg-opacity: 0.7;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+.bg-\[url\(\'\/images\/pattern\.png\'\)\] {
+  background-image: url('/images/pattern.png');
+}
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 .bg-\[url\(\'\/images\/pattern\.png\'\)\] {
   background-image: url('/images/pattern.png');
@@ -1287,9 +1397,12 @@ video {
   padding: 0.5rem;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .p-3 {
   padding: 0.75rem;
 }
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .p-4 {
@@ -1299,9 +1412,14 @@ video {
   padding: 1.5rem;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .px-20 {
   padding-left: 5rem;
   padding-right: 5rem;
+=======
+.p-3 {
+  padding: 0.75rem;
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 .p-3 {
   padding: 0.75rem;
@@ -1344,7 +1462,10 @@ video {
   padding-bottom: 2rem;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -1353,6 +1474,9 @@ video {
   padding-left: 5rem;
   padding-right: 5rem;
 }
+<<<<<<< HEAD
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .pt-2 {
   padding-top: 0.5rem;
@@ -1433,10 +1557,13 @@ video {
   color: rgb(30 58 138 / var(--tw-text-opacity, 1));
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .text-gray-500 {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity, 1));
 }
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .text-gray-600 {
@@ -1448,10 +1575,13 @@ video {
   color: rgb(55 65 81 / var(--tw-text-opacity, 1));
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .text-gray-800 {
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity, 1));
 }
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .text-green-700 {
@@ -1459,10 +1589,13 @@ video {
   color: rgb(21 128 61 / var(--tw-text-opacity, 1));
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .text-red-600 {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity, 1));
 }
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .text-red-700 {
@@ -1474,10 +1607,13 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .opacity-0 {
   opacity: 0;
 }
 =======
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .text-gray-500 {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity, 1));
@@ -1492,6 +1628,9 @@ video {
 .opacity-10 {
   opacity: 0.1;
 }
+<<<<<<< HEAD
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .opacity-100 {
   opacity: 1;
@@ -1596,7 +1735,10 @@ body {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .hover\:scale-105:hover {
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
@@ -1612,6 +1754,9 @@ body {
 
 
 
+<<<<<<< HEAD
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .hover\:bg-blue-700:hover {
   --tw-bg-opacity: 1;
@@ -1642,7 +1787,10 @@ body {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .hover\:bg-gray-300:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(209 213 219 / var(--tw-bg-opacity, 1));
@@ -1650,6 +1798,9 @@ body {
 
 
 
+<<<<<<< HEAD
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .hover\:bg-opacity-50:hover {
   --tw-bg-opacity: 0.5;
@@ -1713,7 +1864,10 @@ body {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .hover\:shadow-2xl:hover {
   --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
   --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
@@ -1730,6 +1884,9 @@ body {
 
 
 
+<<<<<<< HEAD
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .hover\:shadow-lg:hover {
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -1769,6 +1926,7 @@ body {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .focus\:ring-offset-2:focus {
   --tw-ring-offset-width: 2px;
 }
@@ -1781,6 +1939,8 @@ body {
 
 
 
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 .disabled\:opacity-50:disabled {
@@ -1811,10 +1971,13 @@ body {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   .sm\:h-\[350px\] {
     height: 350px;
   }
 
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
   .sm\:grid-cols-2 {
@@ -1825,6 +1988,7 @@ body {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
   .sm\:px-8 {
@@ -1848,6 +2012,8 @@ body {
   }
 =======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 }
 
 
@@ -1855,11 +2021,14 @@ body {
 @media (min-width: 768px) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   .md\:mx-0 {
     margin-left: 0px;
     margin-right: 0px;
   }
 
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
   .md\:mb-12 {
@@ -1895,10 +2064,13 @@ body {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   .md\:h-\[400px\] {
     height: 400px;
   }
 
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
   .md\:h-\[500px\] {
@@ -1954,11 +2126,14 @@ body {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   .md\:px-0 {
     padding-left: 0px;
     padding-right: 0px;
   }
 
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
   .md\:px-6 {
@@ -1972,12 +2147,18 @@ body {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
   .md\:py-20 {
     padding-top: 5rem;
     padding-bottom: 5rem;
   }
 
+<<<<<<< HEAD
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
   .md\:py-3 {
     padding-top: 0.75rem;
@@ -1995,12 +2176,18 @@ body {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
   .md\:px-20 {
     padding-left: 5rem;
     padding-right: 5rem;
   }
 
+<<<<<<< HEAD
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
   .md\:pt-4 {
     padding-top: 1rem;
@@ -2011,10 +2198,13 @@ body {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   .md\:text-left {
     text-align: left;
   }
 
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 =======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
   .md\:text-2xl {
@@ -2038,12 +2228,18 @@ body {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
   .md\:text-6xl {
     font-size: 3.75rem;
     line-height: 1;
   }
 
+<<<<<<< HEAD
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
   .md\:text-base {
     font-size: 1rem;

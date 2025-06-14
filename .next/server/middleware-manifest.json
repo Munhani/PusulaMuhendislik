@@ -1,13 +1,19 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "sortedMiddleware": [],
   "middleware": {},
   "functions": {},
   "version": 2
 =======
+=======
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
   "version": 3,
   "middleware": {},
   "functions": {},
   "sortedMiddleware": []
+<<<<<<< HEAD
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
+=======
 >>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 }

@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "pusula-muhendislik",
+=======
+  "name": "pusula",
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
   "version": "0.1.0",
   "private": true,
   "scripts": {
