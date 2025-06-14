@@ -1,9 +1,20 @@
 {
   "/page": "app/page.js",
+<<<<<<< HEAD
   "/not-found": "app/not-found.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
   "/hakkimizda/page": "app/hakkimizda/page.js",
   "/realitymodel/page": "app/realitymodel/page.js",
   "/hizmetler/page": "app/hizmetler/page.js",
   "/iletisim/page": "app/iletisim/page.js"
+=======
+  "/realitymodel/page": "app/realitymodel/page.js",
+  "/hakkimizda/page": "app/hakkimizda/page.js",
+  "/iletisim/page": "app/iletisim/page.js",
+  "/auth/signin/page": "app/auth/signin/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
+  "/hizmetler/page": "app/hizmetler/page.js"
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 }

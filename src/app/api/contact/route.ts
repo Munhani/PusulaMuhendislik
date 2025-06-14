@@ -49,6 +49,7 @@ export async function POST(request: Request) {
       },
     });
 
+<<<<<<< HEAD
     // E-posta gönderici yapılandırması
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -79,6 +80,34 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       { success: true, contact, message: 'E-posta başarıyla gönderildi' },
+=======
+    // Email gönder
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT),
+      secure: true,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+
+    await transporter.sendMail({
+      from: process.env.SMTP_USER,
+      to: process.env.CONTACT_EMAIL,
+      subject: `Yeni İletişim Formu: ${subject}`,
+      text: `
+        İsim: ${name}
+        Email: ${email}
+        Telefon: ${phone}
+        Konu: ${subject}
+        Mesaj: ${message}
+      `,
+    });
+
+    return NextResponse.json(
+      { success: true, contact },
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
       { status: 200, headers: corsHeaders }
     );
   } catch (error) {

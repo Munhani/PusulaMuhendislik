@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // File: C:\Users\tayfu\web\src\app\api\auth\[...nextauth]\route.ts
+=======
+// File: C:\Users\tayfu\web\pusula\src\app\api\auth\[...nextauth]\route.ts
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 import * as entry from '../../../../../../src/app/api/auth/[...nextauth]/route.js'
 import type { NextRequest } from 'next/server.js'
 

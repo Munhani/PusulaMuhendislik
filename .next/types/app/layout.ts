@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // File: C:\Users\tayfu\web\src\app\layout.tsx
+=======
+// File: C:\Users\tayfu\web\pusula\src\app\layout.tsx
+>>>>>>> 15482864ec85881d2236f4414271b3ec43fac266
 import * as entry from '../../../src/app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

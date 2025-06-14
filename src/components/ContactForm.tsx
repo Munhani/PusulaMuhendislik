@@ -1,150 +1,186 @@
 'use client';
 
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 
-type FormData = {
+interface ContactFormData {
   name: string;
   email: string;
   phone: string;
   subject: string;
   message: string;
-};
+}
 
 export default function ContactForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null);
-  
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
+  const [formData, setFormData] = useState<ContactFormData>({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: '',
+  });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const onSubmit = async (data: FormData) => {
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+    setErrorMessage('');
     try {
-      const response = await fetch('/api/contact', {
+      const apiUrl = `${window.location.origin}/api/contact`;
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(formData),
       });
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        reset();
-      } else {
-        setSubmitStatus('error');
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Bir hata oluştu');
       }
+      setStatus('success');
     } catch (error) {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
+      setStatus('error');
+      setErrorMessage(error instanceof Error ? error.message : 'Bir hata oluştu');
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const getButtonColor = () => {
+    switch (status) {
+      case 'success':
+        return 'bg-green-600 hover:bg-green-700';
+      case 'error':
+        return 'bg-red-600 hover:bg-red-700';
+      case 'loading':
+        return 'bg-blue-600 hover:bg-blue-700';
+      default:
+        return 'bg-blue-900 hover:bg-blue-800';
+    }
+  };
+
+  const getButtonText = () => {
+    switch (status) {
+      case 'success':
+        return 'Gönderildi!';
+      case 'error':
+        return 'Hata!';
+      case 'loading':
+        return 'Gönderiliyor...';
+      default:
+        return 'Gönder';
     }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      <div>
-        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-          İsim Soyisim
-        </label>
-        <input
-          type="text"
-          id="name"
-          {...register('name', { required: 'İsim alanı zorunludur' })}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-        />
-        {errors.name && (
-          <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
-        )}
-      </div>
-
-      <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-          E-posta
-        </label>
-        <input
-          type="email"
-          id="email"
-          {...register('email', {
-            required: 'E-posta alanı zorunludur',
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: 'Geçerli bir e-posta adresi girin',
-            },
-          })}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-        />
-        {errors.email && (
-          <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
-        )}
-      </div>
-
-      <div>
-        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-          Telefon
-        </label>
-        <input
-          type="tel"
-          id="phone"
-          {...register('phone', { required: 'Telefon alanı zorunludur' })}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-        />
-        {errors.phone && (
-          <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>
-        )}
-      </div>
-
-      <div>
-        <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
-          Konu
-        </label>
-        <input
-          type="text"
-          id="subject"
-          {...register('subject', { required: 'Konu alanı zorunludur' })}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-        />
-        {errors.subject && (
-          <p className="mt-1 text-sm text-red-600">{errors.subject.message}</p>
-        )}
-      </div>
-
-      <div>
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-          Mesaj
-        </label>
-        <textarea
-          id="message"
-          rows={4}
-          {...register('message', { required: 'Mesaj alanı zorunludur' })}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-        />
-        {errors.message && (
-          <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>
-        )}
-      </div>
-
-      {submitStatus === 'success' && (
-        <div className="p-4 bg-green-100 text-green-700 rounded-lg">
-          Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağız.
+    <div className="relative">
+      {status === 'success' && (
+        <div className="fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+          <strong className="font-bold">Başarılı!</strong>
+          <span className="block sm:inline"> Mesajınız başarıyla gönderildi.</span>
         </div>
       )}
 
-      {submitStatus === 'error' && (
-        <div className="p-4 bg-red-100 text-red-700 rounded-lg">
-          Mesajınız gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.
+      {status === 'error' && (
+        <div className="fixed top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+          <strong className="font-bold">Hata!</strong>
+          <span className="block sm:inline"> {errorMessage}</span>
         </div>
       )}
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="w-full bg-blue-900 text-white py-2 px-4 rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        {isSubmitting ? 'Gönderiliyor...' : 'Gönder'}
-      </button>
-    </form>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+            Adınız Soyadınız
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            required
+          />
+        </div>
+
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+            E-posta Adresiniz
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            required
+          />
+        </div>
+
+        <div>
+          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+            Telefon Numaranız
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            required
+            pattern="^\+?\d{10,15}$"
+            title="Lütfen geçerli bir telefon numarası giriniz. (Örn: +905331234567)"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
+            Konu
+          </label>
+          <input
+            type="text"
+            id="subject"
+            name="subject"
+            value={formData.subject}
+            onChange={handleChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            required
+          />
+        </div>
+
+        <div>
+          <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+            Mesajınız
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            rows={4}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          disabled={status === 'loading'}
+          className={`w-full text-white px-6 py-3 rounded-lg transition-colors ${getButtonColor()}`}
+        >
+          {getButtonText()}
+        </button>
+      </form>
+    </div>
   );
 } 
