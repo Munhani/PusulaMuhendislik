@@ -1,8 +1,9 @@
 {
   "/page": "app/page.js",
-  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
   "/not-found": "app/not-found.js",
+  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
   "/hakkimizda/page": "app/hakkimizda/page.js",
-  "/api/contact/route": "app/api/contact/route.js",
+  "/realitymodel/page": "app/realitymodel/page.js",
+  "/hizmetler/page": "app/hizmetler/page.js",
   "/iletisim/page": "app/iletisim/page.js"
 }

@@ -16,9 +16,38 @@ export async function OPTIONS() {
   return NextResponse.json({}, { headers: corsHeaders });
 }
 
-export async function POST(req: Request) {
+export async function POST(request: Request) {
   try {
-    const { name, email, phone, subject, message } = await req.json();
+    const body = await request.json();
+    const { name, email, phone, message, subject } = body;
+
+    // Veri doğrulama
+    if (!name || !email || !phone || !message || !subject) {
+      return NextResponse.json(
+        { error: 'Tüm alanları doldurun' },
+        { status: 400, headers: corsHeaders }
+      );
+    }
+
+    // Email formatı kontrolü
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: 'Geçerli bir email adresi girin' },
+        { status: 400, headers: corsHeaders }
+      );
+    }
+
+    // Veritabanına kaydet
+    const contact = await prisma.contact.create({
+      data: {
+        name,
+        email,
+        phone,
+        subject,
+        message,
+      },
+    });
 
     // E-posta gönderici yapılandırması
     const transporter = nodemailer.createTransport({
@@ -49,14 +78,16 @@ export async function POST(req: Request) {
     await transporter.sendMail(mailOptions);
 
     return NextResponse.json(
-      { message: 'E-posta başarıyla gönderildi' },
-      { status: 200 }
+      { success: true, contact, message: 'E-posta başarıyla gönderildi' },
+      { status: 200, headers: corsHeaders }
     );
   } catch (error) {
-    console.error('E-posta gönderme hatası:', error);
+    console.error('Hata:', error);
     return NextResponse.json(
-      { error: 'E-posta gönderilirken bir hata oluştu' },
-      { status: 500 }
+      { error: 'Bir hata oluştu' },
+      { status: 500, headers: corsHeaders }
     );
+  } finally {
+    await prisma.$disconnect();
   }
 } 
