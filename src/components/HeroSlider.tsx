@@ -8,25 +8,33 @@ const slides = [
     id: 1,
     image: '/images/BakuAirport.jpg',
     title: 'Bakü Havalimanı Kavşak Projesi',
-    description: 'Modern ve Etkileyici Yol Tasarımı'
+    description: 'Modern ve Etkileyici Yol Tasarımı',
+    width: 1920,
+    height: 1080
   },
   {
     id: 2,
     image: '/images/BineKavsagi.jpg',
     title: 'Bine Kavşak Projesi',
-    description: 'Profesyonel Mühendislik Çözümleri'
+    description: 'Profesyonel Mühendislik Çözümleri',
+    width: 1920,
+    height: 1080
   },
   {
     id: 3,
     image: '/images/EdirneSirpsindigiKopru.jpg',
     title: 'Edirne Sırpsındığı Köprüsü',
-    description: 'Mühendislik Harikası Köprü Projesi'
+    description: 'Mühendislik Harikası Köprü Projesi',
+    width: 1920,
+    height: 1080
   },
   {
     id: 4,
     image: '/images/FatihYayaUstGecidi.jpg',
     title: 'Fatih Yaya Üst Geçidi',
-    description: 'Modern Şehir Ulaşım Çözümleri'
+    description: 'Modern Şehir Ulaşım Çözümleri',
+    width: 1920,
+    height: 1080
   }
 ];
 
@@ -55,8 +63,11 @@ export default function HeroSlider() {
               src={slide.image}
               alt={`Pusula Mühendislik Projesi: ${slide.title} - ${slide.description}`}
               fill
-              className="object-cover"
+              sizes="100vw"
+              quality={85}
               priority={index === 0}
+              className="object-cover"
+              loading={index === 0 ? "eager" : "lazy"}
             />
             <div className="absolute inset-0 bg-black/40" />
             <div className="absolute inset-0 flex items-center justify-center">

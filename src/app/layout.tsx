@@ -13,8 +13,43 @@ import { Analytics } from '@vercel/analytics/react';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Pusula - Yapay Zeka Destekli Sohbet",
-  description: "Yapay zeka destekli sohbet uygulaması",
+  title: {
+    default: "Pusula Mühendislik | Profesyonel Mühendislik ve Haritacılık Çözümleri",
+    template: "%s | Pusula Mühendislik"
+  },
+  description: "Pusula Mühendislik, 20 yılı aşkın tecrübesiyle haritacılık, kadastro ve inşaat sektöründe profesyonel hizmetler sunmaktadır. Reality Model teknolojileri ve modern çözümlerle yanınızdayız.",
+  keywords: "mühendislik, haritacılık, kadastro, inşaat, reality model, 3d tarama, proje, danışmanlık, istanbul",
+  authors: [{ name: "Pusula Mühendislik" }],
+  creator: "Pusula Mühendislik",
+  publisher: "Pusula Mühendislik",
+  robots: "index, follow",
+  openGraph: {
+    type: "website",
+    locale: "tr_TR",
+    url: "https://pusulamuhendislik.com",
+    siteName: "Pusula Mühendislik",
+    title: "Pusula Mühendislik | Profesyonel Mühendislik ve Haritacılık Çözümleri",
+    description: "Pusula Mühendislik, 20 yılı aşkın tecrübesiyle haritacılık, kadastro ve inşaat sektöründe profesyonel hizmetler sunmaktadır.",
+    images: [
+      {
+        url: "/images/PusulaLogo.png",
+        width: 400,
+        height: 400,
+        alt: "Pusula Mühendislik Logo"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pusula Mühendislik | Profesyonel Mühendislik ve Haritacılık Çözümleri",
+    description: "Pusula Mühendislik, 20 yılı aşkın tecrübesiyle haritacılık, kadastro ve inşaat sektöründe profesyonel hizmetler sunmaktadır.",
+    images: ["/images/PusulaLogo.png"]
+  },
+  manifest: "/manifest.json",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png"
+  }
 };
 
 export default async function RootLayout({
