@@ -50,7 +50,7 @@ export async function POST(request: Request) {
       process.env.CONTACT_EMAIL;
 
     // 1. Veritabanına kaydetmeyi dene (başarısız olursa sadece e-posta ile devam)
-    let contact: { id: string; name: string; email: string; createdAt: string } | null = null;
+    let contact: { id: string; name: string; email: string; createdAt: Date } | null = null;
     try {
       contact = await prisma.contact.create({
         data: { name, email, phone, subject, message },
