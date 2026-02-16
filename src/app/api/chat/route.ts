@@ -4,10 +4,6 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
 export async function POST(req: Request) {
   try {
     const session = await getServerSession(authOptions);
@@ -19,6 +15,11 @@ export async function POST(req: Request) {
 
     if (!messages || !Array.isArray(messages)) {
       return NextResponse.json({ error: 'Geçersiz mesaj formatı' }, { status: 400 });
+    }
+
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json({ error: 'Chat hizmeti şu an kullanılamıyor' }, { status: 503 });
     }
 
     // Kullanıcının kredilerini kontrol et
@@ -47,6 +48,7 @@ export async function POST(req: Request) {
       data: { credits: { decrement: 1 } }
     });
 
+    const openai = new OpenAI({ apiKey });
     const response = await openai.chat.completions.create({
       model,
       messages: messages.map((msg: any) => ({
