@@ -20,10 +20,10 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async session({ session, token }) {
       if (token) {
-        session.user.id = token.id;
-        session.user.name = token.name;
-        session.user.email = token.email;
-        session.user.image = token.picture;
+        session.user.id = (token.id ?? "") as string;
+        session.user.name = (token.name ?? null) as string | null | undefined;
+        session.user.email = (token.email ?? null) as string | null | undefined;
+        session.user.image = (token.picture ?? null) as string | null | undefined;
       }
       return session;
     },
