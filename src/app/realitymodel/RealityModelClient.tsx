@@ -34,7 +34,7 @@ export default function RealityModelClient() {
 
   // Sayfa yüklendiğinde önbellekteki modelleri kontrol et
   useEffect(() => {
-    const cachedModels = ['kiptas', 'durusu', 'esenyurt'];
+    const cachedModels = ['kiptas', 'durusu', 'esenyurt', 'haraccikayasehir'];
     cachedModels.forEach(modelId => {
       if (modelCache.has(modelId)) {
         setIsModelLoaded(prev => ({
@@ -57,14 +57,14 @@ export default function RealityModelClient() {
           daha iyi analiz ve planlama yapmanıza olanak tanır.
         </p>
         <div className="mt-4 md:mt-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto">
-            <div className="flex flex-col justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-3 max-w-5xl mx-auto">
+            <div className="flex flex-col gap-3">
               <Suspense fallback={<ModelLoading />}>
                 <a 
                   href="/01_KiptasKavsak_20240903_3MX/App/index.html" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className={`block text-center bg-blue-900 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base ${isModelLoaded['kiptas'] ? 'opacity-100' : 'opacity-75'}`}
+                  className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base ${isModelLoaded['kiptas'] ? 'opacity-100' : 'opacity-75'}`}
                   onClick={() => cacheModel('kiptas')}
                 >
                   Arnavutköy Kiptaş
@@ -72,35 +72,45 @@ export default function RealityModelClient() {
               </Suspense>
               <button
                 onClick={() => setShowVideo(true)}
-                className="block text-center bg-red-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg hover:bg-red-700 transition-colors text-sm md:text-base mt-3"
+                className="flex items-center justify-center h-[52px] w-full text-center bg-red-600 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-red-700 transition-colors text-sm md:text-base"
               >
                 Arnavutköy Kiptaş Video
               </button>
             </div>
-            <div className="flex flex-col justify-center gap-3">
-              <Suspense fallback={<ModelLoading />}>
-                <a 
-                  href="/01_103_1_20250416_3MX/App/index.html" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className={`block text-center bg-blue-900 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base w-full ${isModelLoaded['durusu'] ? 'opacity-100' : 'opacity-75'}`}
-                  onClick={() => cacheModel('durusu')}
-                >
-                  Durusu
-                </a>
-              </Suspense>
-              <Suspense fallback={<ModelLoading />}>
-                <a 
-                  href="/01_300_5_20250315_3MX/App/index.html" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className={`block text-center bg-blue-900 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base w-full ${isModelLoaded['esenyurt'] ? 'opacity-100' : 'opacity-75'}`}
-                  onClick={() => cacheModel('esenyurt')}
-                >
-                  Esenyurt
-                </a>
-              </Suspense>
-            </div>
+            <Suspense fallback={<ModelLoading />}>
+              <a 
+                href="/01_103_1_20250416_3MX/App/index.html" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base ${isModelLoaded['durusu'] ? 'opacity-100' : 'opacity-75'}`}
+                onClick={() => cacheModel('durusu')}
+              >
+                Durusu
+              </a>
+            </Suspense>
+            <Suspense fallback={<ModelLoading />}>
+              <a 
+                href="/01_Hacimasli2250628_3MX/App/index.html" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base ${isModelLoaded['haraccikayasehir'] ? 'opacity-100' : 'opacity-75'}`}
+                onClick={() => cacheModel('haraccikayasehir')}
+                title="Acute3D görüntüleyici"
+              >
+                HaraçcıKayaşehir
+              </a>
+            </Suspense>
+            <Suspense fallback={<ModelLoading />}>
+              <a 
+                href="/01_300_5_20250315_3MX/App/index.html" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base ${isModelLoaded['esenyurt'] ? 'opacity-100' : 'opacity-75'}`}
+                onClick={() => cacheModel('esenyurt')}
+              >
+                Esenyurt
+              </a>
+            </Suspense>
           </div>
         </div>
       </div>

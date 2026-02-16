@@ -7,6 +7,10 @@ export const metadata = {
 };
 
 export default function IletisimPage() {
+  // Harita koordinatları: Karlıbayır Mahallesi İhtişam Sokak No:6 D:1, Arnavutköy/İstanbul
+  const mapQuery = process.env.CONTACT_MAP_QUERY || '41.183954,28.719024';
+  const encodedMapQuery = encodeURIComponent(mapQuery);
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold text-blue-900 mb-8">İletişim</h1>
@@ -23,7 +27,7 @@ export default function IletisimPage() {
                 <div>
                   <h3 className="font-medium">Adres</h3>
                   <p className="text-gray-600">
-                    Karlıbayır Mahallesi Selçuklu Caddesi No:5 D:11<br />
+                    Karlıbayır Mahallesi İhtişam Sokak No:6 D:1<br />
                     Arnavutköy/İstanbul
                   </p>
                 </div>
@@ -50,20 +54,31 @@ export default function IletisimPage() {
             </div>
           </div>
 
-          {/* Harita */}
+          {/* Harita - API key .env'de GOOGLE_MAPS_EMBED_API_KEY olarak tanımlanmalı */}
           <div className="bg-white p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold text-blue-900 mb-4">Konum</h2>
             <div className="aspect-w-16 aspect-h-9">
-              <iframe
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=41.18434576628961,28.719424740492506&zoom=15&maptype=roadmap"
-                width="100%"
-                height="300"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Pusula Mühendislik Konum"
-              />
+              {process.env.GOOGLE_MAPS_EMBED_API_KEY ? (
+                <iframe
+                  src={`https://www.google.com/maps/embed/v1/place?key=${process.env.GOOGLE_MAPS_EMBED_API_KEY}&q=${encodedMapQuery}&zoom=15&maptype=roadmap`}
+                  width="100%"
+                  height="300"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Pusula Mühendislik Konum"
+                />
+              ) : (
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodedMapQuery}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center h-[300px] bg-gray-100 rounded-lg text-blue-900 font-medium hover:bg-gray-200 transition-colors"
+                >
+                  Konumu Google Maps&apos;te aç
+                </a>
+              )}
             </div>
           </div>
         </div>

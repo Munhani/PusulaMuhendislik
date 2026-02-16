@@ -4,26 +4,27 @@ export default function HizmetlerPage() {
       <h1 className="text-3xl font-bold text-blue-900 mb-8">Hizmetlerimiz</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Harita ve Ölçüm Hizmetleri */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-xl font-semibold text-blue-900 mb-4">Harita ve Ölçüm Hizmetleri</h2>
+        {/* Haritacılık Hizmetleri - www.pusulamuhendislik.com ile uyumlu */}
+        <div id="haritacilik" className="bg-white rounded-lg shadow-md p-6 scroll-mt-24">
+          <h2 className="text-xl font-semibold text-blue-900 mb-4">Haritacılık Hizmetleri</h2>
           <ul className="space-y-2 text-gray-600">
-            <li>• Arazi ve Arsa Ölçümleri</li>
-            <li>• GPS ile Hassas Konum Belirleme</li>
-            <li>• Topografik Haritalama</li>
+            <li>• Özel parselasyon planları</li>
+            <li>• Plankote ve halihazır harita</li>
+            <li>• Aplikasyon işlemleri</li>
           </ul>
         </div>
 
-        {/* Kadastro Hizmetleri */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-xl font-semibold text-blue-900 mb-4">Kadastro Hizmetleri</h2>
+        {/* Kadastro İşleri - www.pusulamuhendislik.com ile uyumlu */}
+        <div id="kadastro" className="bg-white rounded-lg shadow-md p-6 scroll-mt-24">
+          <h2 className="text-xl font-semibold text-blue-900 mb-4">Kadastro İşleri</h2>
           <ul className="space-y-2 text-gray-600">
-            <li>• Aplikasyon Hizmetleri</li>
-            <li>• Yola Terk, İfraz, Tevhid İşleri</li>
+            <li>• İfraz ve tevhid işlemleri</li>
+            <li>• Yola terk işlemleri</li>
+            <li>• Yoldan ihdas işlemleri</li>
           </ul>
         </div>
 
-        {/* Altyapı Projeleri */}
+        {/* Altyapı Projeleri (detay) */}
         <div className="bg-white rounded-lg shadow-md p-6">
           <h2 className="text-xl font-semibold text-blue-900 mb-4">Altyapı Projeleri</h2>
           <ul className="space-y-2 text-gray-600">
@@ -33,7 +34,7 @@ export default function HizmetlerPage() {
           </ul>
         </div>
 
-        {/*  Kentsel Dönüşüm Hizmetleri */}
+        {/* Kentsel Dönüşüm Hizmetleri */}
         <div className="bg-white rounded-lg shadow-md p-6">
           <h2 className="text-xl font-semibold text-blue-900 mb-4">Kentsel Dönüşüm Hizmetleri</h2>
           <ul className="space-y-2 text-gray-600">

@@ -119,7 +119,7 @@ export default async function RootLayout({
                       className="mr-2 w-24 md:w-32"
                     />
                   </div>
-                  <p className="text-xs md:text-sm">Karlıbayır Mahallesi Selçuklu Caddesi No:5 D:11</p>
+                  <p className="text-xs md:text-sm">Karlıbayır Mahallesi İhtişam Sokak No:6 D:1</p>
                   <p className="text-xs md:text-sm">Arnavutköy/İstanbul</p>
                   <p className="text-xs md:text-sm">İş: +90 212 597 97 00</p>
                   <p className="text-xs md:text-sm">Cep: +90 533 490 29 85</p>
