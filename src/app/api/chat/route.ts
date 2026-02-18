@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server';
 import { OpenAI } from 'openai';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
 
 export async function POST(req: Request) {
   try {
@@ -21,32 +20,6 @@ export async function POST(req: Request) {
     if (!apiKey) {
       return NextResponse.json({ error: 'Chat hizmeti şu an kullanılamıyor' }, { status: 503 });
     }
-
-    // Kullanıcının kredilerini kontrol et
-    const user = await prisma.user.findUnique({
-      where: { id: session.user.id },
-      select: { credits: true }
-    });
-
-    if (!user || user.credits <= 0) {
-      return NextResponse.json({ error: 'Yetersiz kredi' }, { status: 402 });
-    }
-
-    // Kredi kullanımını kaydet
-    await prisma.creditUsage.create({
-      data: {
-        userId: session.user.id,
-        amount: 1,
-        type: 'CHAT',
-        model: model
-      }
-    });
-
-    // Kullanıcının kredisini güncelle
-    await prisma.user.update({
-      where: { id: session.user.id },
-      data: { credits: { decrement: 1 } }
-    });
 
     const openai = new OpenAI({ apiKey });
     const response = await openai.chat.completions.create({
@@ -67,4 +40,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-} 
+}
