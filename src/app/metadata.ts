@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     template: "%s | Pusula Mühendislik"
   },
   description: "Pusula Mühendislik, profesyonel mühendislik ve haritacılık hizmetleri sunan, yenilikçi ve sürdürülebilir çözümler üreten bir firmadır.",
-  keywords: "mühendislik, haritacılık, inşaat, altyapı, endüstriyel tesis, çevre, sürdürülebilirlik",
+  keywords: "mühendislik, haritacılık, inşaat, altyapı, endüstriyel tesis, çevre, sürdürülebilirlik, Arnavutköy, Lihkab, Arnavutköy Lihkab, Arnavutköy Kadastro, Kadastro, Arnavutköy İmar, İmar Durumu",
   authors: [{ name: "Pusula Mühendislik" }],
   creator: "Pusula Mühendislik",
   publisher: "Pusula Mühendislik",

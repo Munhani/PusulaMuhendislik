@@ -10,6 +10,11 @@ export default function IletisimPage() {
   // Harita koordinatları: Karlıbayır Mahallesi İhtişam Sokak No:6 D:1, Arnavutköy/İstanbul
   const mapQuery = process.env.CONTACT_MAP_QUERY || '41.183954,28.719024';
   const encodedMapQuery = encodeURIComponent(mapQuery);
+  const [lat, lon] = mapQuery.split(',').map((s) => s.trim());
+  const latNum = parseFloat(lat) || 41.183954;
+  const lonNum = parseFloat(lon) || 28.719024;
+  const bbox = `${lonNum - 0.01},${latNum - 0.008},${lonNum + 0.01},${latNum + 0.008}`;
+  const osmEmbedUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${latNum},${lonNum}`;
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -70,14 +75,26 @@ export default function IletisimPage() {
                   title="Pusula Mühendislik Konum"
                 />
               ) : (
-                <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${encodedMapQuery}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center h-[300px] bg-gray-100 rounded-lg text-blue-900 font-medium hover:bg-gray-200 transition-colors"
-                >
-                  Konumu Google Maps&apos;te aç
-                </a>
+                <>
+                  <iframe
+                    src={osmEmbedUrl}
+                    width="100%"
+                    height="300"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    title="Pusula Mühendislik Konum"
+                    className="rounded-lg"
+                  />
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodedMapQuery}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 mt-2 text-sm text-blue-600 hover:underline"
+                  >
+                    Konumu Google Maps&apos;te aç →
+                  </a>
+                </>
               )}
             </div>
           </div>

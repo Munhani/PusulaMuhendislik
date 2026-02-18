@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: '%s | Pusula Mühendislik'
   },
   description: 'Pusula Mühendislik - Haritacılık, Kadastro ve İnşaat Sektöründe 20 Yıllık Tecrübe',
-  keywords: ['mühendislik', 'haritacılık', 'kadastro', 'inşaat', 'reality model'],
+  keywords: ['mühendislik', 'haritacılık', 'kadastro', 'inşaat', 'reality model', 'Arnavutköy', 'Lihkab', 'Arnavutköy Lihkab', 'Arnavutköy Kadastro', 'Arnavutköy İmar', 'İmar Durumu'],
   authors: [{ name: 'Pusula Mühendislik' }],
   creator: 'Pusula Mühendislik',
   publisher: 'Pusula Mühendislik',
@@ -50,7 +50,7 @@ export default async function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <title>Pusula Mühendislik</title>
         <meta name="description" content="Pusula Mühendislik - Profesyonel Mühendislik Çözümleri" />
-        <meta name="keywords" content="mühendislik, haritacılık, kadastro, inşaat, proje" />
+        <meta name="keywords" content="mühendislik, haritacılık, kadastro, inşaat, proje, Arnavutköy, Lihkab, Arnavutköy Lihkab, Arnavutköy Kadastro, Kadastro, Arnavutköy İmar, İmar Durumu" />
         <meta name="author" content="Pusula Mühendislik" />
         <meta name="robots" content="index, follow" />
         <meta property="og:title" content="Pusula Mühendislik" />
