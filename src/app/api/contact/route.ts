@@ -84,8 +84,11 @@ export async function POST(request: Request) {
       },
       { status: 200, headers: corsHeaders }
     );
-  } catch (error) {
-    console.error('İletişim formu hatası:', error);
+  } catch (error: unknown) {
+    const err = error as { code?: string; message?: string; response?: string };
+    console.error('İletişim formu hatası:', err?.message ?? error);
+    if (err?.code) console.error('SMTP hata kodu:', err.code);
+    if (err?.response) console.error('SMTP yanıt:', err.response);
     return NextResponse.json(
       {
         error:
