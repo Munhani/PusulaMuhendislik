@@ -19,6 +19,7 @@
     "@tabler/icons-react": "^3.31.0",
     "@types/nodemailer": "^6.4.17",
     "@vercel/analytics": "^1.5.0",
+    "@vercel/blob": "^2.2.0",
     "caniuse-lite": "^1.0.30001707",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -47,5 +48,10 @@
     "supabase": "^2.76.9",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
+  },
+  "overrides": {
+    "supabase": {
+      "tar": "7.5.9"
+    }
   }
 }
