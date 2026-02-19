@@ -88,10 +88,11 @@ export default function RealityModelClient() {
                 Durusu
               </a>
             </Suspense>
+            {/* HaraçcıKayaşehir: Cloudinary'de pusula/App/... (npm run cloudinary:upload). 10 MB üstü dosyalar Cloudinary Free'de yüklenemez; Plus/Advanced gerekir. */}
             <Suspense fallback={<ModelLoading />}>
-              <a 
-                href="/01_Hacimasli2250628_3MX/App/index.html" 
-                target="_blank" 
+              <a
+                href={process.env.NEXT_PUBLIC_HARACCI_MODEL_URL || (process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ? `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/raw/upload/pusula/App/index.html` : '/01_Hacimasli2250628_3MX/App/index.html')}
+                target="_blank"
                 rel="noopener noreferrer"
                 className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base ${isModelLoaded['haraccikayasehir'] ? 'opacity-100' : 'opacity-75'}`}
                 onClick={() => cacheModel('haraccikayasehir')}
