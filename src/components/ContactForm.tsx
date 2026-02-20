@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 interface ContactFormData {
   name: string;
@@ -11,6 +12,7 @@ interface ContactFormData {
 }
 
 export default function ContactForm() {
+  const t = useTranslations('form');
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -36,12 +38,12 @@ export default function ContactForm() {
       });
       const data = await response.json();
       if (!response.ok) {
-        throw new Error(data.error || 'Bir hata oluştu');
+        throw new Error(data.error || t('errorDefault'));
       }
       setStatus('success');
     } catch (error) {
       setStatus('error');
-      setErrorMessage(error instanceof Error ? error.message : 'Bir hata oluştu');
+      setErrorMessage(error instanceof Error ? error.message : t('errorDefault'));
     }
   };
 
@@ -69,13 +71,13 @@ export default function ContactForm() {
   const getButtonText = () => {
     switch (status) {
       case 'success':
-        return 'Gönderildi!';
+        return t('sent');
       case 'error':
-        return 'Hata!';
+        return t('error');
       case 'loading':
-        return 'Gönderiliyor...';
+        return t('sending');
       default:
-        return 'Gönder';
+        return t('send');
     }
   };
 
@@ -83,14 +85,14 @@ export default function ContactForm() {
     <div className="relative">
       {status === 'success' && (
         <div className="fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
-          <strong className="font-bold">Başarılı!</strong>
-          <span className="block sm:inline"> Mesajınız başarıyla gönderildi.</span>
+          <strong className="font-bold">{t('successTitle')}</strong>
+          <span className="block sm:inline"> {t('successMessage')}</span>
         </div>
       )}
 
       {status === 'error' && (
         <div className="fixed top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-          <strong className="font-bold">Hata!</strong>
+          <strong className="font-bold">{t('error')}</strong>
           <span className="block sm:inline"> {errorMessage}</span>
         </div>
       )}
@@ -98,7 +100,7 @@ export default function ContactForm() {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-            Adınız Soyadınız
+            {t('name')}
           </label>
           <input
             type="text"
@@ -113,7 +115,7 @@ export default function ContactForm() {
 
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-            E-posta Adresiniz
+            {t('email')}
           </label>
           <input
             type="email"
@@ -128,7 +130,7 @@ export default function ContactForm() {
 
         <div>
           <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-            Telefon Numaranız
+            {t('phone')}
           </label>
           <input
             type="tel"
@@ -139,13 +141,13 @@ export default function ContactForm() {
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             required
             pattern="^\+?\d{10,15}$"
-            title="Lütfen geçerli bir telefon numarası giriniz. (Örn: +905331234567)"
+            title={t('phoneTitle')}
           />
         </div>
 
         <div>
           <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
-            Konu
+            {t('subject')}
           </label>
           <input
             type="text"
@@ -160,7 +162,7 @@ export default function ContactForm() {
 
         <div>
           <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-            Mesajınız
+            {t('message')}
           </label>
           <textarea
             id="message"

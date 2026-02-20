@@ -2,35 +2,16 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-
-const slides = [
-  {
-    id: 1,
-    image: '/images/BakuAirport.jpg',
-    title: 'Bakü Havalimanı Kavşak Projesi',
-    description: 'Modern ve Etkileyici Yol Tasarımı'
-  },
-  {
-    id: 2,
-    image: '/images/BineKavsagi.jpg',
-    title: 'Bine Kavşak Projesi',
-    description: 'Profesyonel Mühendislik Çözümleri'
-  },
-  {
-    id: 3,
-    image: '/images/EdirneSirpsindigiKopru.jpg',
-    title: 'Edirne Sırpsındığı Köprüsü',
-    description: 'Mühendislik Harikası Köprü Projesi'
-  },
-  {
-    id: 4,
-    image: '/images/FatihYayaUstGecidi.jpg',
-    title: 'Fatih Yaya Üst Geçidi',
-    description: 'Modern Şehir Ulaşım Çözümleri'
-  }
-];
+import { useTranslations } from 'next-intl';
 
 export default function HeroSlider() {
+  const t = useTranslations('home.hero');
+  const slides = [
+    { id: 1, image: '/images/BakuAirport.jpg', titleKey: 'baku', descKey: 'bakuDesc' },
+    { id: 2, image: '/images/BineKavsagi.jpg', titleKey: 'bine', descKey: 'bineDesc' },
+    { id: 3, image: '/images/EdirneSirpsindigiKopru.jpg', titleKey: 'edirne', descKey: 'edirneDesc' },
+    { id: 4, image: '/images/FatihYayaUstGecidi.jpg', titleKey: 'fatih', descKey: 'fatihDesc' },
+  ];
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
@@ -53,7 +34,7 @@ export default function HeroSlider() {
           <div className="relative w-full h-full">
             <Image
               src={slide.image}
-              alt={`Pusula Mühendislik Projesi: ${slide.title} - ${slide.description}`}
+              alt={`Pusula Mühendislik Projesi: ${t(slide.titleKey)} - ${t(slide.descKey)}`}
               fill
               sizes="100vw"
               quality={85}
@@ -64,8 +45,8 @@ export default function HeroSlider() {
             <div className="absolute inset-0 bg-black/40" />
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center text-white px-4">
-                <h2 className="text-3xl md:text-5xl font-bold mb-4">{slide.title}</h2>
-                <p className="text-lg md:text-xl">{slide.description}</p>
+                <h2 className="text-3xl md:text-5xl font-bold mb-4">{t(slide.titleKey)}</h2>
+                <p className="text-lg md:text-xl">{t(slide.descKey)}</p>
               </div>
             </div>
           </div>

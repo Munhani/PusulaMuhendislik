@@ -1,13 +1,15 @@
 import ContactForm from '@/components/ContactForm';
 import { FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
+import { getTranslations } from 'next-intl/server';
 
 export const metadata = {
   title: 'İletişim | Pusula Mühendislik',
   description: 'Pusula Mühendislik iletişim sayfası. Bize ulaşmak için formu doldurabilirsiniz.',
 };
 
-export default function IletisimPage() {
-  // Harita koordinatları: Karlıbayır Mahallesi İhtişam Sokak No:6 D:1, Arnavutköy/İstanbul
+export default async function IletisimPage() {
+  const t = await getTranslations('contact');
+  const tFooter = await getTranslations('footer');
   const mapQuery = process.env.CONTACT_MAP_QUERY || '41.183954,28.719024';
   const encodedMapQuery = encodeURIComponent(mapQuery);
   const [lat, lon] = mapQuery.split(',').map((s) => s.trim());
@@ -18,22 +20,21 @@ export default function IletisimPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-blue-900 mb-8">İletişim</h1>
+      <h1 className="text-3xl font-bold text-blue-900 mb-8">{t('title')}</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* İletişim Bilgileri */}
         <div className="space-y-6">
           <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-xl font-semibold text-blue-900 mb-4">İletişim Bilgileri</h2>
+            <h2 className="text-xl font-semibold text-blue-900 mb-4">{t('contactInfo')}</h2>
             
             <div className="space-y-4">
               <div className="flex items-start">
                 <FaMapMarkerAlt className="text-blue-900 mt-1 mr-3" />
                 <div>
-                  <h3 className="font-medium">Adres</h3>
+                  <h3 className="font-medium">{t('address')}</h3>
                   <p className="text-gray-600">
-                    Karlıbayır Mahallesi İhtişam Sokak No:6 D:1<br />
-                    Arnavutköy/İstanbul
+                    {tFooter('address')}<br />
+                    {tFooter('city')}
                   </p>
                 </div>
               </div>
@@ -41,10 +42,10 @@ export default function IletisimPage() {
               <div className="flex items-start">
                 <FaPhone className="text-blue-900 mt-1 mr-3" />
                 <div>
-                  <h3 className="font-medium">Telefon</h3>
+                  <h3 className="font-medium">{t('phone')}</h3>
                   <p className="text-gray-600">
-                    İş: +90 212 597 97 00<br />
-                    Cep: +90 533 490 29 85
+                    {tFooter('phoneWork')}<br />
+                    {tFooter('phoneMobile')}
                   </p>
                 </div>
               </div>
@@ -52,16 +53,15 @@ export default function IletisimPage() {
               <div className="flex items-start">
                 <FaEnvelope className="text-blue-900 mt-1 mr-3" />
                 <div>
-                  <h3 className="font-medium">E-posta</h3>
+                  <h3 className="font-medium">{t('email')}</h3>
                   <p className="text-gray-600">tsivri@pusulamuhendislik.com</p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Harita - API key .env'de GOOGLE_MAPS_EMBED_API_KEY olarak tanımlanmalı */}
           <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-xl font-semibold text-blue-900 mb-4">Konum</h2>
+            <h2 className="text-xl font-semibold text-blue-900 mb-4">{t('location')}</h2>
             <div className="aspect-w-16 aspect-h-9">
               {process.env.GOOGLE_MAPS_EMBED_API_KEY ? (
                 <iframe
@@ -92,7 +92,7 @@ export default function IletisimPage() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 mt-2 text-sm text-blue-600 hover:underline"
                   >
-                    Konumu Google Maps&apos;te aç →
+                    {t('openInMaps')}
                   </a>
                 </>
               )}

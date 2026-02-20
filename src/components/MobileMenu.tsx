@@ -2,9 +2,11 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
+  const t = useTranslations('nav');
 
   return (
     <div className="md:hidden">
@@ -22,19 +24,19 @@ export default function MobileMenu() {
         <div className="absolute top-full left-0 right-0 bg-white shadow-lg py-4">
           <div className="flex flex-col space-y-4 px-4">
             <Link href="/" className="text-gray-700 hover:text-blue-900 transition-colors">
-              Ana Sayfa
+              {t('home')}
             </Link>
             <Link href="/hizmetler" className="text-gray-700 hover:text-blue-900 transition-colors">
-              Hizmetler
+              {t('services')}
             </Link>
             <Link href="/realitymodel" className="text-gray-700 hover:text-blue-900 transition-colors">
-              Reality Model
+              {t('realityModel')}
             </Link>
             <Link href="/hakkimizda" className="text-gray-700 hover:text-blue-900 transition-colors">
-              Hakkımızda
+              {t('about')}
             </Link>
             <Link href="/iletisim" className="text-gray-700 hover:text-blue-900 transition-colors">
-              İletişim
+              {t('contact')}
             </Link>
           </div>
         </div>

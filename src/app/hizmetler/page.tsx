@@ -1,68 +1,64 @@
-export default function HizmetlerPage() {
+import { getTranslations } from 'next-intl/server';
+
+export default async function HizmetlerPage() {
+  const t = await getTranslations('hizmetler');
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-blue-900 mb-8">Hizmetlerimiz</h1>
+      <h1 className="text-3xl font-bold text-blue-900 mb-8">{t('title')}</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Haritacılık Hizmetleri - www.pusulamuhendislik.com ile uyumlu */}
         <div id="haritacilik" className="bg-white rounded-lg shadow-md p-6 scroll-mt-24">
-          <h2 className="text-xl font-semibold text-blue-900 mb-4">Haritacılık Hizmetleri</h2>
+          <h2 className="text-xl font-semibold text-blue-900 mb-4">{t('mapping')}</h2>
           <ul className="space-y-2 text-gray-600">
-            <li>• Özel parselasyon planları</li>
-            <li>• Plankote ve halihazır harita</li>
-            <li>• Aplikasyon işlemleri</li>
+            <li>• {t('mappingItem1')}</li>
+            <li>• {t('mappingItem2')}</li>
+            <li>• {t('mappingItem3')}</li>
           </ul>
         </div>
 
-        {/* Kadastro İşleri - www.pusulamuhendislik.com ile uyumlu */}
         <div id="kadastro" className="bg-white rounded-lg shadow-md p-6 scroll-mt-24">
-          <h2 className="text-xl font-semibold text-blue-900 mb-4">Kadastro İşleri</h2>
+          <h2 className="text-xl font-semibold text-blue-900 mb-4">{t('cadastre')}</h2>
           <ul className="space-y-2 text-gray-600">
-            <li>• İfraz ve tevhid işlemleri</li>
-            <li>• Yola terk işlemleri</li>
-            <li>• Yoldan ihdas işlemleri</li>
+            <li>• {t('cadastreItem1')}</li>
+            <li>• {t('cadastreItem2')}</li>
+            <li>• {t('cadastreItem3')}</li>
           </ul>
         </div>
 
-        {/* Altyapı Projeleri (detay) */}
         <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-xl font-semibold text-blue-900 mb-4">Altyapı Projeleri</h2>
+          <h2 className="text-xl font-semibold text-blue-900 mb-4">{t('infrastructure')}</h2>
           <ul className="space-y-2 text-gray-600">
-            <li>• Yol ve Köprü Projeleri</li>
-            <li>• İçme Suyu ve Kanalizasyon</li>
-            <li>• Küçük Sanat Yapıları Projeleri</li>
+            <li>• {t('infraItem1')}</li>
+            <li>• {t('infraItem2')}</li>
+            <li>• {t('infraItem3')}</li>
           </ul>
         </div>
 
-        {/* Kentsel Dönüşüm Hizmetleri */}
         <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-xl font-semibold text-blue-900 mb-4">Kentsel Dönüşüm Hizmetleri</h2>
+          <h2 className="text-xl font-semibold text-blue-900 mb-4">{t('urban')}</h2>
           <ul className="space-y-2 text-gray-600">
-            <li>• Riskli Yapı Tespiti</li>
-            <li>• Deprem Analizi</li>
+            <li>• {t('urbanItem1')}</li>
+            <li>• {t('urbanItem2')}</li>
           </ul>
         </div>
 
-        {/* Reality Model Hizmetleri */}
         <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-xl font-semibold text-blue-900 mb-4">Reality Model Hizmetleri</h2>
+          <h2 className="text-xl font-semibold text-blue-900 mb-4">{t('reality')}</h2>
           <ul className="space-y-2 text-gray-600">
-            <li>• Drone Fotogrametri</li>
-            <li>• 3D Modelleme</li>
-            <li>• 3D Scan</li>
-            <li>• Nokta Bulutu</li>
-         </ul>
+            <li>• {t('realityItem1')}</li>
+            <li>• {t('realityItem2')}</li>
+            <li>• {t('realityItem3')}</li>
+            <li>• {t('realityItem4')}</li>
+          </ul>
         </div>
 
-        {/* Danışmanlık Hizmetleri */}
         <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-xl font-semibold text-blue-900 mb-4">Danışmanlık Hizmetleri</h2>
+          <h2 className="text-xl font-semibold text-blue-900 mb-4">{t('consulting')}</h2>
           <ul className="space-y-2 text-gray-600">
-            <li>• Proje Yönetimi</li>
-            <li>• Teknik Danışmanlık</li>
-            <li>• Kadastro Bilirkişiliği</li>
-            <li>• Risk Değerlendirmesi</li>
-
+            <li>• {t('consultItem1')}</li>
+            <li>• {t('consultItem2')}</li>
+            <li>• {t('consultItem3')}</li>
+            <li>• {t('consultItem4')}</li>
           </ul>
         </div>
       </div>
