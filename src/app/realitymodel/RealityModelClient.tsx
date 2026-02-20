@@ -18,7 +18,7 @@ const ModelLoading = () => (
 );
 
 export default function RealityModelClient() {
-  const [showVideo, setShowVideo] = useState(false);
+  const [videoModal, setVideoModal] = useState<{ src: string; title: string } | null>(null);
   const [isModelLoaded, setIsModelLoaded] = useState<{[key: string]: boolean}>({});
 
   // Model önbelleğe alma fonksiyonu
@@ -71,7 +71,7 @@ export default function RealityModelClient() {
                 </a>
               </Suspense>
               <button
-                onClick={() => setShowVideo(true)}
+                onClick={() => setVideoModal({ src: 'https://www.youtube.com/embed/pD80sTSVh84', title: 'Arnavutköy Kiptaş Video' })}
                 className="flex items-center justify-center h-[52px] w-full text-center bg-red-600 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-red-700 transition-colors text-sm md:text-base"
               >
                 Arnavutköy Kiptaş Video
@@ -88,37 +88,36 @@ export default function RealityModelClient() {
                 Durusu
               </a>
             </Suspense>
-            {/* HaraçcıKayaşehir: NEXT_PUBLIC_HARACCI_MODEL_URL veya Cloudinary gerekli; yoksa 404 olmaması için buton devre dışı "Yakında" gösterilir. */}
-            <Suspense fallback={<ModelLoading />}>
-              {(() => {
-                const haracciUrl = process.env.NEXT_PUBLIC_HARACCI_MODEL_URL
-                  || (process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
-                    ? `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/raw/upload/pusula/App/index.html`
-                    : null);
-                if (!haracciUrl) {
-                  return (
-                    <span
-                      className="flex items-center justify-center h-[52px] w-full text-center bg-gray-400 text-white px-2 md:px-4 py-3 rounded-lg cursor-not-allowed text-sm md:text-base"
-                      title="Model linki yapılandırıldığında açılacak"
-                    >
-                      HaraçcıKayaşehir – Yakında
-                    </span>
-                  );
-                }
-                return (
+            {/* Haracci Kayaşehir: public/01_Hacimasli2250628_3MX içinde App/index.html yok (sadece WebReady+metadata). NEXT_PUBLIC_HARACCI_MODEL_URL varsa link, yoksa Yakında. */}
+            <div className="flex flex-col gap-3">
+              <Suspense fallback={<ModelLoading />}>
+                {process.env.NEXT_PUBLIC_HARACCI_MODEL_URL ? (
                   <a
-                    href={haracciUrl}
+                    href={process.env.NEXT_PUBLIC_HARACCI_MODEL_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base ${isModelLoaded['haraccikayasehir'] ? 'opacity-100' : 'opacity-75'}`}
                     onClick={() => cacheModel('haraccikayasehir')}
                     title="Acute3D görüntüleyici"
                   >
-                    HaraçcıKayaşehir
+                    Haracci Kayaşehir
                   </a>
-                );
-              })()}
-            </Suspense>
+                ) : (
+                  <span
+                    className="flex items-center justify-center h-[52px] w-full text-center bg-gray-400 text-white px-2 md:px-4 py-3 rounded-lg cursor-not-allowed text-sm md:text-base"
+                    title="App/Scene eklenince veya NEXT_PUBLIC_HARACCI_MODEL_URL tanımlanınca açılacak"
+                  >
+                    Haracci Kayaşehir – Yakında
+                  </span>
+                )}
+              </Suspense>
+              <button
+                onClick={() => setVideoModal({ src: 'https://www.youtube.com/embed/tex2DIpYUE0', title: 'Haraçcı Kayaşehir' })}
+                className="flex items-center justify-center h-[52px] w-full text-center bg-red-600 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-red-700 transition-colors text-sm md:text-base"
+              >
+                Haraçcı Kayaşehir
+              </button>
+            </div>
             <Suspense fallback={<ModelLoading />}>
               <a 
                 href="/01_300_5_20250315_3MX/App/index.html" 
@@ -135,9 +134,13 @@ export default function RealityModelClient() {
       </div>
       
       {/* Video Modal */}
-      {showVideo && (
+      {videoModal && (
         <Suspense fallback={<div className="animate-pulse bg-gray-200 h-96 rounded-lg"></div>}>
-          <VideoModal onClose={() => setShowVideo(false)} />
+          <VideoModal
+            videoSrc={videoModal.src}
+            videoTitle={videoModal.title}
+            onClose={() => setVideoModal(null)}
+          />
         </Suspense>
       )}
     </div>

@@ -95,7 +95,8 @@ async function main() {
       continue;
     }
     const relNorm = rel.replace(/\\/g, '/');
-    const publicId = (folderPrefix ? `${folderPrefix.replace(/\/$/, '')}/${relNorm}` : relNorm).replace(/\.[^.]+$/, '');
+    // Uzantıyı koru: Acute3D viewer gibi uygulamalar relative path (örn. script/acute3d.js) kullanır; uzantı yoksa 404 olur.
+    const publicId = folderPrefix ? `${folderPrefix.replace(/\/$/, '')}/${relNorm}` : relNorm;
     try {
       const result = await cloudinary.v2.uploader.upload(fullPath, {
         public_id: publicId,
