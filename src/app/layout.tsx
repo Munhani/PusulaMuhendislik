@@ -169,7 +169,8 @@ export default async function RootLayout({
                         target="_blank" 
                         rel="noopener noreferrer" 
                         className="text-[#0077B5] hover:text-[#005582] text-xl md:text-2xl transition-colors"
-                        aria-label="LinkedIn"
+                        aria-label="LinkedIn - İletişim: tsivri@pusulamuhendislik.com"
+                        title="LinkedIn - İletişim: tsivri@pusulamuhendislik.com"
                       >
                         <FaLinkedin />
                       </a>
