@@ -91,7 +91,12 @@ export default function RealityModelClient() {
             <div className="flex flex-col gap-3">
               <Suspense fallback={<ModelLoading message={t('modelLoading')} />}>
                 <a
-                  href={process.env.NEXT_PUBLIC_HARACCI_MODEL_URL || '/01_Hacimasli2250628_3MX/App/index.html'}
+                  href={
+                    process.env.NEXT_PUBLIC_HARACCI_MODEL_URL ??
+                    (process.env.NODE_ENV === 'development'
+                      ? '/01_Hacimasli2250628_3MX/App/index.html'
+                      : `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ?? 'dnnelobda'}/raw/upload/Pusula/01_Hacimasli2250628_3MX/App/index.html`)
+                  }
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base ${isModelLoaded['haraccikayasehir'] ? 'opacity-100' : 'opacity-75'}`}
