@@ -68,7 +68,7 @@ export async function GET(
           ...u,
           scene: u.scene?.replace(/Production_5\.3mx$/i, '01_Hacimasli2250628_3MX.3mx') ?? u.scene,
         }));
-        finalBody = Buffer.from(JSON.stringify(json), 'utf-8');
+        finalBody = new TextEncoder().encode(JSON.stringify(json)).buffer;
       }
     } catch (_) {}
   }
