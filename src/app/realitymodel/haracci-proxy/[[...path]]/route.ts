@@ -62,9 +62,9 @@ export async function GET(
   // Viewer config sahneyi Production_5.3mx bekliyor; bu projede 01_Hacimasli2250628_3MX.3mx var.
   if (path === 'App/config.json' && contentType === 'application/json') {
     try {
-      const json = JSON.parse(Buffer.from(body).toString('utf-8'));
+      const json = JSON.parse(Buffer.from(body).toString('utf-8')) as { URLs?: Array<{ alias?: string; scene?: string }> };
       if (json.URLs && Array.isArray(json.URLs)) {
-        json.URLs = json.URLs.map((u) => ({
+        json.URLs = json.URLs.map((u: { alias?: string; scene?: string }) => ({
           ...u,
           scene: u.scene?.replace(/Production_5\.3mx$/i, '01_Hacimasli2250628_3MX.3mx') ?? u.scene,
         }));
