@@ -56,7 +56,24 @@ export async function GET(
   }
 
   const body = await res.arrayBuffer();
-  return new NextResponse(body, {
+  let finalBody = body;
+  let finalContentType = contentType;
+
+  // Viewer config sahneyi Production_5.3mx bekliyor; bu projede 01_Hacimasli2250628_3MX.3mx var.
+  if (path === 'App/config.json' && contentType === 'application/json') {
+    try {
+      const json = JSON.parse(Buffer.from(body).toString('utf-8'));
+      if (json.URLs && Array.isArray(json.URLs)) {
+        json.URLs = json.URLs.map((u) => ({
+          ...u,
+          scene: u.scene?.replace(/Production_5\.3mx$/i, '01_Hacimasli2250628_3MX.3mx') ?? u.scene,
+        }));
+        finalBody = Buffer.from(JSON.stringify(json), 'utf-8');
+      }
+    } catch (_) {}
+  }
+
+  return new NextResponse(finalBody, {
     status: 200,
     headers: {
       'Content-Type': contentType,
