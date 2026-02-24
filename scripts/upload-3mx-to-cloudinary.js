@@ -1,6 +1,7 @@
 /**
  * public/01_Hacimasli2250628_3MX klasörünü Cloudinary'de
  * Pusula/01_Hacimasli2250628_3MX altına yükler.
+ * Sadece Cloudinary'de olmayan (eksik) dosyaları yükler.
  * Kullanım: node scripts/upload-3mx-to-cloudinary.js
  * .env.local içinde CLOUDINARY_* değişkenleri tanımlı olmalı.
  */
@@ -13,6 +14,21 @@ const cloudinary = require('cloudinary').v2;
 
 const CLOUDINARY_FOLDER = 'Pusula/01_Hacimasli2250628_3MX';
 const LOCAL_DIR = path.join(process.cwd(), 'public', '01_Hacimasli2250628_3MX');
+
+function getCloudinaryPublicId(relativePath) {
+  const dir = path.dirname(relativePath);
+  const basename = path.basename(relativePath);
+  const nameWithoutExt = basename.includes('.') ? basename.slice(0, basename.lastIndexOf('.')) : basename;
+  return dir ? `${CLOUDINARY_FOLDER}/${dir}/${nameWithoutExt}` : `${CLOUDINARY_FOLDER}/${nameWithoutExt}`;
+}
+
+function existsOnCloudinary(publicId) {
+  return new Promise((resolve) => {
+    cloudinary.api.resource(publicId, { resource_type: 'raw' }, (err) => {
+      resolve(!err);
+    });
+  });
+}
 
 function getAllFiles(dir, base = '') {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -71,20 +87,27 @@ async function main() {
   }
 
   const files = getAllFiles(LOCAL_DIR);
-  console.log(`${files.length} dosya bulundu. Cloudinary'ye yükleniyor (${CLOUDINARY_FOLDER})...\n`);
+  console.log(`${files.length} dosya bulundu. Sadece eksik olanlar yüklenecek (${CLOUDINARY_FOLDER})...\n`);
 
   let ok = 0;
-  let skip = 0;
+  let skipEmpty = 0;
+  let skipExisting = 0;
   let fail = 0;
   for (const { fullPath, relativePath } of files) {
     if (fs.statSync(fullPath).size === 0) {
       console.log('  ATLA (boş):', relativePath);
-      skip++;
+      skipEmpty++;
+      continue;
+    }
+    const publicId = getCloudinaryPublicId(relativePath);
+    if (await existsOnCloudinary(publicId)) {
+      console.log('  VAR:', relativePath);
+      skipExisting++;
       continue;
     }
     try {
       await uploadFile(fullPath, relativePath);
-      console.log('  OK:', relativePath);
+      console.log('  YÜKLENDİ:', relativePath);
       ok++;
     } catch (e) {
       console.error('  HATA:', relativePath, e.message);
@@ -92,7 +115,7 @@ async function main() {
     }
   }
 
-  console.log(`\nBitti. Başarılı: ${ok}, Atlanan (boş): ${skip}, Hata: ${fail}`);
+  console.log(`\nBitti. Yüklenen: ${ok}, Zaten var: ${skipExisting}, Atlanan (boş): ${skipEmpty}, Hata: ${fail}`);
 }
 
 main().catch((e) => {

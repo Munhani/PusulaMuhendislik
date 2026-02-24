@@ -95,7 +95,7 @@ export default function RealityModelClient() {
                     process.env.NEXT_PUBLIC_HARACCI_MODEL_URL ??
                     (process.env.NODE_ENV === 'development'
                       ? '/01_Hacimasli2250628_3MX/App/index.html'
-                      : `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ?? 'dnnelobda'}/raw/upload/Pusula/01_Hacimasli2250628_3MX/App/index.html`)
+                      : '/realitymodel/haracci')
                   }
                   target="_blank"
                   rel="noopener noreferrer"
