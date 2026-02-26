@@ -11,10 +11,13 @@
     "city": "Arnavutköy/İstanbul",
     "phoneWork": "İş: +90 212 597 97 00",
     "phoneMobile": "Cep: +90 533 490 29 85",
+    "phoneWorkTel": "+902125979700",
+    "phoneMobileTel": "+905334902985",
     "quickLinks": "Hızlı Bağlantılar",
     "catalogClick": "Katalog İçin Tıklayın",
     "socialMedia": "Sosyal Medya",
-    "copyright": "Tüm hakları saklıdır."
+    "copyright": "Tüm hakları saklıdır.",
+    "getDirections": "Yol Tarifi Al"
   },
   "home": {
     "hero": {

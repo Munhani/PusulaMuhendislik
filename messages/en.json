@@ -11,9 +11,12 @@
     "city": "Arnavutköy/Istanbul",
     "phoneWork": "Office: +90 212 597 97 00",
     "phoneMobile": "Mobile: +90 533 490 29 85",
+    "phoneWorkTel": "+902125979700",
+    "phoneMobileTel": "+905334902985",
     "quickLinks": "Quick Links",
     "catalogClick": "Click for Catalog",
     "socialMedia": "Social Media",
+    "getDirections": "Get Directions",
     "copyright": "All rights reserved."
   },
   "home": {

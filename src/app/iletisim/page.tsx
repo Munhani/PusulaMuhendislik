@@ -36,6 +36,14 @@ export default async function IletisimPage() {
                     {tFooter('address')}<br />
                     {tFooter('city')}
                   </p>
+                  <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=41.183942,28.719004"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 mt-2 px-3 py-1.5 bg-blue-900 text-white text-sm font-medium rounded-lg hover:bg-blue-800 transition-colors"
+                  >
+                    {tFooter('getDirections')}
+                  </a>
                 </div>
               </div>
 
@@ -44,8 +52,9 @@ export default async function IletisimPage() {
                 <div>
                   <h3 className="font-medium">{t('phone')}</h3>
                   <p className="text-gray-600">
-                    {tFooter('phoneWork')}<br />
-                    {tFooter('phoneMobile')}
+                    <a href={`tel:${tFooter('phoneWorkTel')}`} className="hover:underline hover:text-blue-900">{tFooter('phoneWork')}</a>
+                    <br />
+                    <a href={`tel:${tFooter('phoneMobileTel')}`} className="hover:underline hover:text-blue-900">{tFooter('phoneMobile')}</a>
                   </p>
                 </div>
               </div>

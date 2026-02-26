@@ -133,8 +133,16 @@ export default async function RootLayout({
                   </div>
                   <p className="text-xs md:text-sm">{tFooter('address')}</p>
                   <p className="text-xs md:text-sm">{tFooter('city')}</p>
-                  <p className="text-xs md:text-sm">{tFooter('phoneWork')}</p>
-                  <p className="text-xs md:text-sm">{tFooter('phoneMobile')}</p>
+                  <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=41.183942,28.719004"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block mt-1 text-xs md:text-sm px-2 py-1 bg-white/20 text-white rounded hover:bg-white/30 transition-colors"
+                  >
+                    {tFooter('getDirections')}
+                  </a>
+                  <a href={`tel:${tFooter('phoneWorkTel')}`} className="text-xs md:text-sm block hover:underline">{tFooter('phoneWork')}</a>
+                  <a href={`tel:${tFooter('phoneMobileTel')}`} className="text-xs md:text-sm block hover:underline">{tFooter('phoneMobile')}</a>
                   <p className="text-xs md:text-sm">tsivri@pusulamuhendislik.com</p>
                 </div>
                 <div>

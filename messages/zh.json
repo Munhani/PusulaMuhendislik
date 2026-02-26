@@ -11,10 +11,13 @@
     "city": "阿尔纳武特柯伊/伊斯坦布尔",
     "phoneWork": "办公：+90 212 597 97 00",
     "phoneMobile": "手机：+90 533 490 29 85",
+    "phoneWorkTel": "+902125979700",
+    "phoneMobileTel": "+905334902985",
     "quickLinks": "快速链接",
     "catalogClick": "点击获取目录",
     "socialMedia": "社交媒体",
-    "copyright": "版权所有。"
+    "copyright": "版权所有。",
+    "getDirections": "获取路线"
   },
   "home": {
     "hero": {

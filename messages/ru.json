@@ -11,10 +11,13 @@
     "city": "Арнавуткёй/Стамбул",
     "phoneWork": "Офис: +90 212 597 97 00",
     "phoneMobile": "Моб.: +90 533 490 29 85",
+    "phoneWorkTel": "+902125979700",
+    "phoneMobileTel": "+905334902985",
     "quickLinks": "Ссылки",
     "catalogClick": "Каталог",
     "socialMedia": "Соцсети",
-    "copyright": "Все права защищены."
+    "copyright": "Все права защищены.",
+    "getDirections": "Маршрут"
   },
   "home": {
     "hero": {
