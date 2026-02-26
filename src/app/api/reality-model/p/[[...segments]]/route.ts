@@ -60,7 +60,8 @@ export async function GET(
     if (decoded && isAllowedBaseUrl(decoded)) {
       baseUrl = baseUrl.replace(/\/App\/?$/, '/');
     } else {
-      baseUrl = TURKKOSE_SCENE_BASE;
+      const isHaracciScene = subPath.includes('01_Hacimasli2250628_3MX') || pathParts.join('/') === 'Scene/Production_5.3mx';
+      baseUrl = isHaracciScene ? DEFAULT_CLOUDINARY_SCENE_BASE : TURKKOSE_SCENE_BASE;
     }
   }
   let targetUrl = `${baseUrl.replace(/\/$/, '')}/${subPath}`;
@@ -81,12 +82,22 @@ export async function GET(
     }
     if (!res.ok && subPath.startsWith('Scene/') && baseUrl === DEFAULT_CLOUDINARY_SCENE_BASE) {
       const appSceneUrl = `${DEFAULT_CLOUDINARY_APP_BASE.replace(/\/$/, '')}/${subPath}`;
-      const resApp = await fetch(appSceneUrl, { headers: { 'Accept': '*/*' }, redirect: 'follow' });
-      if (resApp.ok) {
-        res = resApp;
+      let resApp = await fetch(appSceneUrl, { headers: { 'Accept': '*/*' }, redirect: 'follow' });
+      if (resApp.ok) res = resApp;
+      if (!res.ok && subPath === 'Scene/01_Hacimasli2250628_3MX.3mx') {
+        const altUrl = `${DEFAULT_CLOUDINARY_SCENE_BASE.replace(/\/$/, '')}/Scene/Production_5.3mx`;
+        resApp = await fetch(altUrl, { headers: { 'Accept': '*/*' }, redirect: 'follow' });
+        if (resApp.ok) res = resApp;
       }
     }
 
+    if (!res.ok && subPath.includes('help/index.html')) {
+      const helpHtml = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Help</title></head><body><p>Help</p></body></html>';
+      return new NextResponse(helpHtml, {
+        status: 200,
+        headers: { 'Content-Type': 'text/html; charset=utf-8', 'Content-Disposition': 'inline' },
+      });
+    }
     if (!res.ok && subPath === 'Scene/placeholder.jpg') {
       const tinyPng = Buffer.from(
         'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==',
