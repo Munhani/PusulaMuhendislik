@@ -155,7 +155,7 @@ export default function RealityModelClient() {
                 onClick={() => {
                   cacheModel('turkkose');
                   setModelViewerUrl({
-                    url: process.env.NEXT_PUBLIC_TURKKOSE_MODEL_URL ?? `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/raw/upload/Pusula/01_Hacimasli2250628_3MX/App/index.html`,
+                    url: process.env.NEXT_PUBLIC_TURKKOSE_MODEL_URL ?? 'https://res.cloudinary.com/dnnelobda/raw/upload/Pusula/01_20251124_TurkkoseYol_3MXWeb/App/index.html',
                     title: t('turkkose')
                   });
                 }}
