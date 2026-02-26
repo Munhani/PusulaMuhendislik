@@ -22,9 +22,42 @@ function ModelLoading({ message }: { message: string }) {
   );
 }
 
+/** Proxy üzerinden iframe'de açıyoruz; Cloudinary X-Frame-Options ve indirme sorununu aşar */
+function ModelViewerModal({ url, title, onClose }: { url: string; title: string; onClose: () => void }) {
+  const isCloudinary = url.includes('res.cloudinary.com');
+  const iframeSrc = isCloudinary ? `/api/reality-model?url=${encodeURIComponent(url)}` : url;
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-2 md:p-4" onClick={onClose} role="dialog" aria-modal="true" aria-label={title}>
+      <div className="relative w-full h-full max-w-6xl max-h-[90vh] bg-white rounded-lg shadow-xl flex flex-col" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center justify-between px-3 py-2 border-b bg-gray-100 rounded-t-lg shrink-0">
+          <span className="font-medium text-gray-800">{title}</span>
+          <button
+            type="button"
+            onClick={onClose}
+            className="p-2 text-gray-600 hover:text-red-600 rounded text-2xl leading-none"
+            aria-label="Kapat"
+          >
+            ×
+          </button>
+        </div>
+        <div className="flex-1 min-h-0 relative">
+          <iframe
+            key={iframeSrc}
+            src={iframeSrc}
+            title={title}
+            className="absolute inset-0 w-full h-full rounded-b-lg border-0"
+            allow="fullscreen"
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function RealityModelClient() {
   const t = useTranslations('realitymodel');
   const [videoModal, setVideoModal] = useState<{ src: string; title: string } | null>(null);
+  const [modelViewerUrl, setModelViewerUrl] = useState<{ url: string; title: string } | null>(null);
   const [isModelLoaded, setIsModelLoaded] = useState<{[key: string]: boolean}>({});
 
   const cacheModel = (modelId: string) => {
@@ -93,19 +126,20 @@ export default function RealityModelClient() {
             </Suspense>
             <div className="flex flex-col gap-3">
               <Suspense fallback={<ModelLoading message={t('modelLoading')} />}>
-                <a
-                  href={
-                    process.env.NEXT_PUBLIC_HARACCI_MODEL_URL
-                    ?? `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/raw/upload/Pusula/01_Hacimasli2250628_3MX/App/index.html`
-                  }
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
+                  onClick={() => {
+                    cacheModel('haraccikayasehir');
+                    setModelViewerUrl({
+                      url: process.env.NEXT_PUBLIC_HARACCI_MODEL_URL ?? '/01_Hacimasli2250628_3MX/App/index.html',
+                      title: t('haracciKayasehir')
+                    });
+                  }}
                   className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base ${isModelLoaded['haraccikayasehir'] ? 'opacity-100' : 'opacity-75'}`}
-                  onClick={() => cacheModel('haraccikayasehir')}
                   title="Acute3D görüntüleyici"
                 >
                   {t('haracciKayasehir')}
-                </a>
+                </button>
               </Suspense>
               <button
                 onClick={() => setVideoModal({ src: 'https://www.youtube.com/embed/tex2DIpYUE0', title: t('haracciKayasehir') })}
@@ -114,24 +148,22 @@ export default function RealityModelClient() {
                 {t('haracciKayasehir')}
               </button>
             </div>
-            {/* Turkkose: Cloudinary Pusula/01_20251124_TurkkoseYol_3MXWeb/App/index.html */}
+            {/* Turkkose: Cloudinary – iframe ile açılıyor (indirme önlenir) */}
             <Suspense fallback={<ModelLoading message={t('modelLoading')} />}>
-              {(() => {
-                const turkkoseUrl = process.env.NEXT_PUBLIC_TURKKOSE_MODEL_URL
-                  ?? `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/raw/upload/Pusula/01_20251124_TurkkoseYol_3MXWeb/App/index.html`;
-                return (
-                  <a
-                    href={turkkoseUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base ${isModelLoaded['turkkose'] ? 'opacity-100' : 'opacity-75'}`}
-                    onClick={() => cacheModel('turkkose')}
-                    title="Acute3D görüntüleyici"
-                  >
-                    {t('turkkose')}
-                  </a>
-                );
-              })()}
+              <button
+                type="button"
+                onClick={() => {
+                  cacheModel('turkkose');
+                  setModelViewerUrl({
+                    url: process.env.NEXT_PUBLIC_TURKKOSE_MODEL_URL ?? `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/raw/upload/Pusula/01_20251124_TurkkoseYol_3MXWeb/App/index.html`,
+                    title: t('turkkose')
+                  });
+                }}
+                className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base ${isModelLoaded['turkkose'] ? 'opacity-100' : 'opacity-75'}`}
+                title="Acute3D görüntüleyici"
+              >
+                {t('turkkose')}
+              </button>
             </Suspense>
             <Suspense fallback={<ModelLoading message={t('modelLoading')} />}>
               <a 
@@ -157,6 +189,15 @@ export default function RealityModelClient() {
             onClose={() => setVideoModal(null)}
           />
         </Suspense>
+      )}
+
+      {/* Model viewer modal – Cloudinary HTML iframe ile açılır (indirme olmaz) */}
+      {modelViewerUrl && (
+        <ModelViewerModal
+          url={modelViewerUrl.url}
+          title={modelViewerUrl.title}
+          onClose={() => setModelViewerUrl(null)}
+        />
       )}
     </div>
   );
