@@ -33,7 +33,6 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png"
   }
 };
@@ -80,6 +79,7 @@ export default async function RootLayout({
                     width={200}
                     height={200}
                     className="mr-2 w-32 md:w-48"
+                    priority
                   />
                 </Link>
 

@@ -13,6 +13,7 @@ const nextConfig = {
   async redirects() {
     return [
       { source: '/index.html', destination: '/', permanent: false },
+      { source: '/:model/App', destination: '/:model/App/index.html', permanent: false },
     ];
   },
   async headers() {
