@@ -60,7 +60,10 @@ export async function GET(
     if (decoded && isAllowedBaseUrl(decoded)) {
       baseUrl = baseUrl.replace(/\/App\/?$/, '/');
     } else {
-      const isHaracciScene = subPath.includes('01_Hacimasli2250628_3MX') || pathParts.join('/') === 'Scene/Production_5.3mx';
+      const isHaracciScene =
+        subPath.includes('01_Hacimasli2250628_3MX') ||
+        subPath === 'Scene/Production_5.3mx' ||
+        subPath.startsWith('Scene/Data/Production_5.');
       baseUrl = isHaracciScene ? DEFAULT_CLOUDINARY_SCENE_BASE : TURKKOSE_SCENE_BASE;
     }
   }
@@ -88,6 +91,13 @@ export async function GET(
         const altUrl = `${DEFAULT_CLOUDINARY_SCENE_BASE.replace(/\/$/, '')}/Scene/Production_5.3mx`;
         resApp = await fetch(altUrl, { headers: { 'Accept': '*/*' }, redirect: 'follow' });
         if (resApp.ok) res = resApp;
+      }
+      if (!res.ok && subPath.startsWith('Scene/Data/')) {
+        const dataAlt = subPath.replace(/^Scene\/Data\/Production_5\./, 'Scene/Data/01_Hacimasli2250628_3MX.');
+        if (dataAlt !== subPath) {
+          resApp = await fetch(`${DEFAULT_CLOUDINARY_SCENE_BASE.replace(/\/$/, '')}/${dataAlt}`, { headers: { 'Accept': '*/*' }, redirect: 'follow' });
+          if (resApp.ok) res = resApp;
+        }
       }
     }
 
