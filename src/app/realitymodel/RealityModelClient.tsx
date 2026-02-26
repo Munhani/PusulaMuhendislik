@@ -22,6 +22,8 @@ function ModelLoading({ message }: { message: string }) {
   );
 }
 
+const HARACCI_CLOUDINARY_URL = `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/raw/upload/Pusula/01_Hacimasli2250628_3MX/App/index.html`;
+
 /** Proxy üzerinden iframe'de açıyoruz; Cloudinary X-Frame-Options ve indirme sorununu aşar */
 function ModelViewerModal({ url, title, onClose }: { url: string; title: string; onClose: () => void }) {
   const isCloudinary = url.includes('res.cloudinary.com');
@@ -141,8 +143,12 @@ export default function RealityModelClient() {
                   type="button"
                   onClick={() => {
                     cacheModel('haraccikayasehir');
+                    let url = process.env.NEXT_PUBLIC_HARACCI_MODEL_URL ?? HARACCI_CLOUDINARY_URL;
+                    if (url.startsWith('/') && typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
+                      url = HARACCI_CLOUDINARY_URL;
+                    }
                     setModelViewerUrl({
-                      url: process.env.NEXT_PUBLIC_HARACCI_MODEL_URL ?? '/01_Hacimasli2250628_3MX/App/index.html',
+                      url,
                       title: t('haracciKayasehir')
                     });
                   }}
