@@ -95,16 +95,22 @@ export default function RealityModelClient() {
         <div className="mt-4 md:mt-6">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-3 max-w-6xl mx-auto">
             <div className="flex flex-col gap-3">
+              {/* Arnavutköy Kiptaş: Turkkose gibi iframe modalda açılır, yeni sekme değil */}
               <Suspense fallback={<ModelLoading message={t('modelLoading')} />}>
-                <a 
-                  href="/01_KiptasKavsak_20240903_3MX/App/index.html" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
+                  onClick={() => {
+                    cacheModel('kiptas');
+                    setModelViewerUrl({
+                      url: process.env.NEXT_PUBLIC_KIPTAS_MODEL_URL ?? '/01_KiptasKavsak_20240903_3MX/App/index.html',
+                      title: t('kiptas')
+                    });
+                  }}
                   className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base ${isModelLoaded['kiptas'] ? 'opacity-100' : 'opacity-75'}`}
-                  onClick={() => cacheModel('kiptas')}
+                  title="Acute3D görüntüleyici"
                 >
                   {t('kiptas')}
-                </a>
+                </button>
               </Suspense>
               <button
                 onClick={() => setVideoModal({ src: 'https://www.youtube.com/embed/pD80sTSVh84', title: t('kiptasVideo') })}
@@ -114,15 +120,20 @@ export default function RealityModelClient() {
               </button>
             </div>
             <Suspense fallback={<ModelLoading message={t('modelLoading')} />}>
-              <a 
-                href="/01_103_1_20250416_3MX/App/index.html" 
-                target="_blank" 
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={() => {
+                  cacheModel('durusu');
+                  setModelViewerUrl({
+                    url: process.env.NEXT_PUBLIC_DURUSU_MODEL_URL ?? '/01_103_1_20250416_3MX/App/index.html',
+                    title: t('durusu')
+                  });
+                }}
                 className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base ${isModelLoaded['durusu'] ? 'opacity-100' : 'opacity-75'}`}
-                onClick={() => cacheModel('durusu')}
+                title="Acute3D görüntüleyici"
               >
                 {t('durusu')}
-              </a>
+              </button>
             </Suspense>
             <div className="flex flex-col gap-3">
               <Suspense fallback={<ModelLoading message={t('modelLoading')} />}>
@@ -166,15 +177,20 @@ export default function RealityModelClient() {
               </button>
             </Suspense>
             <Suspense fallback={<ModelLoading message={t('modelLoading')} />}>
-              <a 
-                href="/01_300_5_20250315_3MX/App/index.html" 
-                target="_blank" 
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={() => {
+                  cacheModel('esenyurt');
+                  setModelViewerUrl({
+                    url: process.env.NEXT_PUBLIC_ESENYURT_MODEL_URL ?? '/01_300_5_20250315_3MX/App/index.html',
+                    title: t('esenyurt')
+                  });
+                }}
                 className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base ${isModelLoaded['esenyurt'] ? 'opacity-100' : 'opacity-75'}`}
-                onClick={() => cacheModel('esenyurt')}
+                title="Acute3D görüntüleyici"
               >
                 {t('esenyurt')}
-              </a>
+              </button>
             </Suspense>
           </div>
         </div>
