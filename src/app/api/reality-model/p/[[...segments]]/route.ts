@@ -53,14 +53,14 @@ export async function GET(
   }
 
   let subPath = pathParts.join('/');
-  if (subPath === 'Scene/Production_5.3mx') {
+  if (subPath === 'Scene/Production_5.3mx' || subPath === 'Production_5.3mx') {
     subPath = 'Scene/01_Hacimasli2250628_3MX.3mx';
   }
   if (subPath.startsWith('Scene/')) {
     if (decoded && isAllowedBaseUrl(decoded)) {
       baseUrl = baseUrl.replace(/\/App\/?$/, '/');
     } else {
-      baseUrl = TURKKOSE_SCENE_BASE;
+      baseUrl = subPath.includes('01_20251124_TurkkoseYol') ? TURKKOSE_SCENE_BASE : DEFAULT_CLOUDINARY_SCENE_BASE;
     }
   }
   let targetUrl = `${baseUrl.replace(/\/$/, '')}/${subPath}`;
@@ -95,6 +95,13 @@ export async function GET(
       return new NextResponse(tinyPng, {
         status: 200,
         headers: { 'Content-Type': 'image/png', 'Content-Disposition': 'inline' },
+      });
+    }
+    if (!res.ok && subPath.includes('help/')) {
+      const helpHtml = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Help</title></head><body><p>Acute3D viewer help</p></body></html>';
+      return new NextResponse(helpHtml, {
+        status: 200,
+        headers: { 'Content-Type': 'text/html; charset=utf-8', 'Content-Disposition': 'inline' },
       });
     }
     if (!res.ok) {
