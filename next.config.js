@@ -4,6 +4,11 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  async redirects() {
+    return [
+      { source: '/index.html', destination: '/', permanent: false },
+    ];
+  },
   async headers() {
     return [
       {
