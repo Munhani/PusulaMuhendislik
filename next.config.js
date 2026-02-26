@@ -13,6 +13,10 @@ const nextConfig = {
   async redirects() {
     return [
       { source: '/index.html', destination: '/', permanent: false },
+      { source: '/realitymodel/index.html', destination: '/realitymodel', permanent: false },
+      { source: '/hakkimizda/index.html', destination: '/hakkimizda', permanent: false },
+      { source: '/hizmetler/index.html', destination: '/hizmetler', permanent: false },
+      { source: '/iletisim/index.html', destination: '/iletisim', permanent: false },
       { source: '/:model/App', destination: '/:model/App/index.html', permanent: false },
     ];
   },
