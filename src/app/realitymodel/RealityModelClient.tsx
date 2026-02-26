@@ -22,8 +22,6 @@ function ModelLoading({ message }: { message: string }) {
   );
 }
 
-const HARACCI_CLOUDINARY_URL = `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/raw/upload/Pusula/01_Hacimasli2250628_3MX/App/index.html`;
-
 /** Proxy üzerinden iframe'de açıyoruz; Cloudinary X-Frame-Options ve indirme sorununu aşar */
 function ModelViewerModal({ url, title, onClose }: { url: string; title: string; onClose: () => void }) {
   const isCloudinary = url.includes('res.cloudinary.com');
@@ -94,110 +92,101 @@ export default function RealityModelClient() {
         <p className="text-gray-700 mb-4 md:mb-6 text-sm md:text-base">
           {t('whatIsText')}
         </p>
-        <div className="mt-4 md:mt-6">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-3 max-w-6xl mx-auto">
+        <div className="mt-4 md:mt-6 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-3 max-w-6xl mx-auto [&_button]:cursor-pointer [&_button]:relative [&_button]:z-10">
             <div className="flex flex-col gap-3">
               {/* Arnavutköy Kiptaş: Turkkose gibi iframe modalda açılır, yeni sekme değil */}
-              <Suspense fallback={<ModelLoading message={t('modelLoading')} />}>
-                <button
-                  type="button"
-                  onClick={() => {
-                    cacheModel('kiptas');
-                    setModelViewerUrl({
-                      url: process.env.NEXT_PUBLIC_KIPTAS_MODEL_URL ?? '/01_KiptasKavsak_20240903_3MX/App/index.html',
-                      title: t('kiptas')
-                    });
-                  }}
-                  className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base ${isModelLoaded['kiptas'] ? 'opacity-100' : 'opacity-75'}`}
-                  title="Acute3D görüntüleyici"
-                >
-                  {t('kiptas')}
-                </button>
-              </Suspense>
               <button
+                type="button"
+                onClick={() => {
+                  cacheModel('kiptas');
+                  setModelViewerUrl({
+                    url: process.env.NEXT_PUBLIC_KIPTAS_MODEL_URL ?? '/01_KiptasKavsak_20240903_3MX/App/index.html',
+                    title: t('kiptas')
+                  });
+                }}
+                className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base cursor-pointer ${isModelLoaded['kiptas'] ? 'opacity-100' : 'opacity-75'}`}
+                title="Acute3D görüntüleyici"
+              >
+                {t('kiptas')}
+              </button>
+              <button
+                type="button"
                 onClick={() => setVideoModal({ src: 'https://www.youtube.com/embed/pD80sTSVh84', title: t('kiptasVideo') })}
-                className="flex items-center justify-center h-[52px] w-full text-center bg-red-600 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-red-700 transition-colors text-sm md:text-base"
+                className="flex items-center justify-center h-[52px] w-full text-center bg-red-600 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-red-700 transition-colors text-sm md:text-base cursor-pointer"
               >
                 {t('kiptasVideo')}
               </button>
             </div>
-            <Suspense fallback={<ModelLoading message={t('modelLoading')} />}>
+            <button
+              type="button"
+              onClick={() => {
+                cacheModel('durusu');
+                setModelViewerUrl({
+                  url: process.env.NEXT_PUBLIC_DURUSU_MODEL_URL ?? '/01_103_1_20250416_3MX/App/index.html',
+                  title: t('durusu')
+                });
+              }}
+              className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base cursor-pointer ${isModelLoaded['durusu'] ? 'opacity-100' : 'opacity-75'}`}
+              title="Acute3D görüntüleyici"
+            >
+              {t('durusu')}
+            </button>
+            <div className="flex flex-col gap-3">
               <button
                 type="button"
                 onClick={() => {
-                  cacheModel('durusu');
+                  cacheModel('haraccikayasehir');
+                  const cloudinaryHaracci = `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/raw/upload/Pusula/01_Hacimasli2250628_3MX/App/index.html`;
+                  const isLocalhost = typeof window !== 'undefined' && window.location.hostname === 'localhost';
+                  const url = process.env.NEXT_PUBLIC_HARACCI_MODEL_URL ?? (isLocalhost ? '/01_Hacimasli2250628_3MX/App/index.html' : cloudinaryHaracci);
                   setModelViewerUrl({
-                    url: process.env.NEXT_PUBLIC_DURUSU_MODEL_URL ?? '/01_103_1_20250416_3MX/App/index.html',
-                    title: t('durusu')
+                    url,
+                    title: t('haracciKayasehir')
                   });
                 }}
-                className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base ${isModelLoaded['durusu'] ? 'opacity-100' : 'opacity-75'}`}
+                className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base cursor-pointer ${isModelLoaded['haraccikayasehir'] ? 'opacity-100' : 'opacity-75'}`}
                 title="Acute3D görüntüleyici"
               >
-                {t('durusu')}
+                {t('haracciKayasehir')}
               </button>
-            </Suspense>
-            <div className="flex flex-col gap-3">
-              <Suspense fallback={<ModelLoading message={t('modelLoading')} />}>
-                <button
-                  type="button"
-                  onClick={() => {
-                    cacheModel('haraccikayasehir');
-                    let url = process.env.NEXT_PUBLIC_HARACCI_MODEL_URL ?? HARACCI_CLOUDINARY_URL;
-                    if (url.startsWith('/') && typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
-                      url = HARACCI_CLOUDINARY_URL;
-                    }
-                    setModelViewerUrl({
-                      url,
-                      title: t('haracciKayasehir')
-                    });
-                  }}
-                  className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base ${isModelLoaded['haraccikayasehir'] ? 'opacity-100' : 'opacity-75'}`}
-                  title="Acute3D görüntüleyici"
-                >
-                  {t('haracciKayasehir')}
-                </button>
-              </Suspense>
               <button
+                type="button"
                 onClick={() => setVideoModal({ src: 'https://www.youtube.com/embed/tex2DIpYUE0', title: t('haracciKayasehir') })}
-                className="flex items-center justify-center h-[52px] w-full text-center bg-red-600 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-red-700 transition-colors text-sm md:text-base"
+                className="flex items-center justify-center h-[52px] w-full text-center bg-red-600 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-red-700 transition-colors text-sm md:text-base cursor-pointer"
               >
                 {t('haracciKayasehir')}
               </button>
             </div>
-            {/* Turkkose: Cloudinary – Pusula/01_Hacimasli2250628_3MX/App/index.html, proxy ile iframe */}
-            <Suspense fallback={<ModelLoading message={t('modelLoading')} />}>
-              <button
-                type="button"
-                onClick={() => {
-                  cacheModel('turkkose');
-                  setModelViewerUrl({
-                    url: process.env.NEXT_PUBLIC_TURKKOSE_MODEL_URL ?? 'https://res.cloudinary.com/dnnelobda/raw/upload/Pusula/01_20251124_TurkkoseYol_3MXWeb/App/index.html',
-                    title: t('turkkose')
-                  });
-                }}
-                className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base ${isModelLoaded['turkkose'] ? 'opacity-100' : 'opacity-75'}`}
-                title="Acute3D görüntüleyici"
-              >
-                {t('turkkose')}
-              </button>
-            </Suspense>
-            <Suspense fallback={<ModelLoading message={t('modelLoading')} />}>
-              <button
-                type="button"
-                onClick={() => {
-                  cacheModel('esenyurt');
-                  setModelViewerUrl({
-                    url: process.env.NEXT_PUBLIC_ESENYURT_MODEL_URL ?? '/01_300_5_20250315_3MX/App/index.html',
-                    title: t('esenyurt')
-                  });
-                }}
-                className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base ${isModelLoaded['esenyurt'] ? 'opacity-100' : 'opacity-75'}`}
-                title="Acute3D görüntüleyici"
-              >
-                {t('esenyurt')}
-              </button>
-            </Suspense>
+            {/* Turkkose: Cloudinary */}
+            <button
+              type="button"
+              onClick={() => {
+                cacheModel('turkkose');
+                setModelViewerUrl({
+                  url: process.env.NEXT_PUBLIC_TURKKOSE_MODEL_URL ?? 'https://res.cloudinary.com/dnnelobda/raw/upload/Pusula/01_20251124_TurkkoseYol_3MXWeb/App/index.html',
+                  title: t('turkkose')
+                });
+              }}
+              className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base cursor-pointer ${isModelLoaded['turkkose'] ? 'opacity-100' : 'opacity-75'}`}
+              title="Acute3D görüntüleyici"
+            >
+              {t('turkkose')}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                cacheModel('esenyurt');
+                setModelViewerUrl({
+                  url: process.env.NEXT_PUBLIC_ESENYURT_MODEL_URL ?? '/01_300_5_20250315_3MX/App/index.html',
+                  title: t('esenyurt')
+                });
+              }}
+              className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base cursor-pointer ${isModelLoaded['esenyurt'] ? 'opacity-100' : 'opacity-75'}`}
+              title="Acute3D görüntüleyici"
+            >
+              {t('esenyurt')}
+            </button>
           </div>
         </div>
       </div>
