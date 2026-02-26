@@ -5,8 +5,8 @@ import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import { modelCache } from './modelCache';
 
-/** Cloudinary cloud name (env yoksa kullanılır) */
-const CLOUDINARY_CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 'dnnelobda';
+/** Cloudinary cloud name: dnnelobda (env ile override edilebilir) */
+const CLOUDINARY_CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ?? 'dnnelobda';
 
 // Lazy load video modal
 const VideoModal = dynamic(() => import('./VideoModal'), {
@@ -40,12 +40,12 @@ function ModelViewerModal({ url, title, onClose }: { url: string; title: string;
             ×
           </button>
         </div>
-        <div className="flex-1 min-h-0 relative">
+        <div className="flex-1 min-h-[60vh] relative" style={{ minHeight: 480 }}>
           <iframe
             key={iframeSrc}
             src={iframeSrc}
             title={title}
-            className="absolute inset-0 w-full h-full rounded-b-lg border-0"
+            className="absolute inset-0 w-full h-full min-h-[480px] rounded-b-lg border-0"
             allow="fullscreen"
           />
         </div>
@@ -148,14 +148,14 @@ export default function RealityModelClient() {
                 {t('haracciKayasehir')}
               </button>
             </div>
-            {/* Turkkose: Cloudinary – iframe ile açılıyor (indirme önlenir) */}
+            {/* Turkkose: Cloudinary – Pusula/01_Hacimasli2250628_3MX/App/index.html, proxy ile iframe */}
             <Suspense fallback={<ModelLoading message={t('modelLoading')} />}>
               <button
                 type="button"
                 onClick={() => {
                   cacheModel('turkkose');
                   setModelViewerUrl({
-                    url: process.env.NEXT_PUBLIC_TURKKOSE_MODEL_URL ?? `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/raw/upload/Pusula/01_20251124_TurkkoseYol_3MXWeb/App/index.html`,
+                    url: process.env.NEXT_PUBLIC_TURKKOSE_MODEL_URL ?? `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/raw/upload/Pusula/01_Hacimasli2250628_3MX/App/index.html`,
                     title: t('turkkose')
                   });
                 }}

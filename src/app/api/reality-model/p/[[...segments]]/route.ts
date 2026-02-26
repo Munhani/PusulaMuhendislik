@@ -21,35 +21,61 @@ function isAllowedBaseUrl(url: string): boolean {
   }
 }
 
-/** /api/reality-model/p/BASE64/script/acute3d.js → Cloudinary base + path */
+const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ?? 'dnnelobda';
+const DEFAULT_CLOUDINARY_APP_BASE = `https://res.cloudinary.com/${CLOUD_NAME}/raw/upload/Pusula/01_Hacimasli2250628_3MX/App/`;
+const DEFAULT_CLOUDINARY_SCENE_BASE = `https://res.cloudinary.com/${CLOUD_NAME}/raw/upload/Pusula/01_Hacimasli2250628_3MX/`;
+
+/** /api/reality-model/p/BASE64/script/acute3d.js veya /api/reality-model/p/Scene/... (base64 yoksa varsayılan base) */
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ segments?: string[] }> }
 ) {
   const { segments } = await params;
-  if (!segments || segments.length < 2) {
+  if (!segments || segments.length < 1) {
     return NextResponse.json({ error: 'Invalid path' }, { status: 400 });
   }
 
-  const encodedBase = segments[0];
-  const pathParts = segments.slice(1);
-  const baseUrl = base64UrlDecode(encodedBase);
-  if (!baseUrl || !isAllowedBaseUrl(baseUrl)) {
-    return NextResponse.json({ error: 'Invalid base' }, { status: 400 });
+  let baseUrl: string;
+  let pathParts: string[];
+
+  const decoded = base64UrlDecode(segments[0]);
+  if (decoded && isAllowedBaseUrl(decoded)) {
+    baseUrl = decoded;
+    pathParts = segments.slice(1);
+  } else {
+    baseUrl = DEFAULT_CLOUDINARY_APP_BASE;
+    pathParts = segments;
+  }
+
+  if (pathParts.length === 0) {
+    return NextResponse.json({ error: 'Invalid path' }, { status: 400 });
   }
 
   let subPath = pathParts.join('/');
   if (subPath === 'Scene/Production_5.3mx') {
     subPath = 'Scene/01_Hacimasli2250628_3MX.3mx';
   }
+  if (subPath.startsWith('Scene/')) {
+    baseUrl = DEFAULT_CLOUDINARY_SCENE_BASE;
+  }
   const targetUrl = `${baseUrl.replace(/\/$/, '')}/${subPath}`;
 
   try {
-    const res = await fetch(targetUrl, {
+    let res = await fetch(targetUrl, {
       headers: { 'Accept': '*/*' },
       redirect: 'follow',
     });
 
+    if (!res.ok && subPath === 'Scene/placeholder.jpg') {
+      const tinyPng = Buffer.from(
+        'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==',
+        'base64'
+      );
+      return new NextResponse(tinyPng, {
+        status: 200,
+        headers: { 'Content-Type': 'image/png', 'Content-Disposition': 'inline' },
+      });
+    }
     if (!res.ok) {
       return new NextResponse(null, { status: res.status });
     }

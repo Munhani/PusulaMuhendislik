@@ -49,13 +49,16 @@ export async function GET(request: NextRequest) {
     const origin = request.nextUrl.origin;
     const proxyBase = `${origin}/api/reality-model/p/${encodedBase}/`;
 
+    body = body.replace(/<base\s[^>]*>/gi, '');
+    const embedStyle = '<style>html,body{height:100%;margin:0;overflow:hidden}#content,#viewer,.qx-widget{height:100%!important;min-height:100%!important}</style>';
+    const acute3dPatch = '<script>(function(){var px=function(v){return typeof v==="number"?v+"px":(v||"100%");};var E=Element.prototype;if(!E.setHeight){E.setHeight=function(h){this.style.height=px(h);};E.setWidth=function(w){this.style.width=px(w);};}var O=Object.prototype;if(!O.setHeight){var sh=function(h){var el=this.getContentElement?this.getContentElement():this.dom||(this.style?this:null);if(el&&el.style)el.style.height=px(h);};var sw=function(w){var el=this.getContentElement?this.getContentElement():this.dom||(this.style?this:null);if(el&&el.style)el.style.width=px(w);};Object.defineProperty(O,"setHeight",{value:sh,writable:true,configurable:true,enumerable:false});Object.defineProperty(O,"setWidth",{value:sw,writable:true,configurable:true,enumerable:false});}})();</script>';
     const baseTag = `<base href="${proxyBase.replace(/"/g, '&quot;')}">`;
     if (body.includes('<head>')) {
-      body = body.replace('<head>', `<head>${baseTag}`);
+      body = body.replace('<head>', `<head>${baseTag}${embedStyle}${acute3dPatch}`);
     } else if (body.includes('<HEAD>')) {
-      body = body.replace('<HEAD>', `<HEAD>${baseTag}`);
+      body = body.replace('<HEAD>', `<HEAD>${baseTag}${embedStyle}${acute3dPatch}`);
     } else if (/<html/i.test(body)) {
-      body = body.replace(/(<html[^>]*>)/i, `$1<head>${baseTag}</head>`);
+      body = body.replace(/(<html[^>]*>)/i, `$1<head>${baseTag}${embedStyle}${acute3dPatch}</head>`);
     }
 
     return new NextResponse(body, {

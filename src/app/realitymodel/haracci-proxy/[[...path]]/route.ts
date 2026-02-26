@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+/** Cloudinary cloud name: dnnelobda */
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ?? 'dnnelobda';
 const CLOUDINARY_BASE = `https://res.cloudinary.com/${CLOUD_NAME}/raw/upload/Pusula/01_Hacimasli2250628_3MX`;
 
