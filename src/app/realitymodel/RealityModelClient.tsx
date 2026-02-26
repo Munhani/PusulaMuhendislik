@@ -5,6 +5,9 @@ import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import { modelCache } from './modelCache';
 
+/** Cloudinary cloud name (env yoksa kullanılır) */
+const CLOUDINARY_CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 'dnnelobda';
+
 // Lazy load video modal
 const VideoModal = dynamic(() => import('./VideoModal'), {
   loading: () => <div className="animate-pulse bg-gray-200 h-96 rounded-lg"></div>,
@@ -36,7 +39,7 @@ export default function RealityModelClient() {
 
   // Sayfa yüklendiğinde önbellekteki modelleri kontrol et
   useEffect(() => {
-    const cachedModels = ['kiptas', 'durusu', 'esenyurt', 'haraccikayasehir'];
+    const cachedModels = ['kiptas', 'durusu', 'esenyurt', 'haraccikayasehir', 'turkkose'];
     cachedModels.forEach(modelId => {
       if (modelCache.has(modelId)) {
         setIsModelLoaded(prev => ({
@@ -57,7 +60,7 @@ export default function RealityModelClient() {
           {t('whatIsText')}
         </p>
         <div className="mt-4 md:mt-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-3 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-3 max-w-6xl mx-auto">
             <div className="flex flex-col gap-3">
               <Suspense fallback={<ModelLoading message={t('modelLoading')} />}>
                 <a 
@@ -92,10 +95,8 @@ export default function RealityModelClient() {
               <Suspense fallback={<ModelLoading message={t('modelLoading')} />}>
                 <a
                   href={
-                    process.env.NEXT_PUBLIC_HARACCI_MODEL_URL ??
-                    (process.env.NODE_ENV === 'development'
-                      ? '/01_Hacimasli2250628_3MX/App/index.html'
-                      : '/realitymodel/haracci')
+                    process.env.NEXT_PUBLIC_HARACCI_MODEL_URL
+                    ?? `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/raw/upload/Pusula/01_Hacimasli2250628_3MX/App/index.html`
                   }
                   target="_blank"
                   rel="noopener noreferrer"
@@ -113,6 +114,25 @@ export default function RealityModelClient() {
                 {t('haracciKayasehir')}
               </button>
             </div>
+            {/* Turkkose: Cloudinary Pusula/01_20251124_TurkkoseYol_3MXWeb/App/index.html */}
+            <Suspense fallback={<ModelLoading message={t('modelLoading')} />}>
+              {(() => {
+                const turkkoseUrl = process.env.NEXT_PUBLIC_TURKKOSE_MODEL_URL
+                  ?? `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/raw/upload/Pusula/01_20251124_TurkkoseYol_3MXWeb/App/index.html`;
+                return (
+                  <a
+                    href={turkkoseUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base ${isModelLoaded['turkkose'] ? 'opacity-100' : 'opacity-75'}`}
+                    onClick={() => cacheModel('turkkose')}
+                    title="Acute3D görüntüleyici"
+                  >
+                    {t('turkkose')}
+                  </a>
+                );
+              })()}
+            </Suspense>
             <Suspense fallback={<ModelLoading message={t('modelLoading')} />}>
               <a 
                 href="/01_300_5_20250315_3MX/App/index.html" 
