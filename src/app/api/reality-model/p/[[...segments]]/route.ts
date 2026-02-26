@@ -53,7 +53,8 @@ export async function GET(
   }
 
   let subPath = pathParts.join('/');
-  if (subPath.includes('help/index.html')) {
+  const isHelpRequest = subPath.includes('help/index.html') || subPath.endsWith('/help') || subPath === 'help' || /\/help\/?$/.test(subPath);
+  if (isHelpRequest) {
     const helpHtml = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Help</title></head><body><p>Help</p></body></html>';
     return new NextResponse(helpHtml, {
       status: 200,
