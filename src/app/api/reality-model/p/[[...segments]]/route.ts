@@ -25,6 +25,7 @@ const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ?? 'dnnelobda';
 const DEFAULT_CLOUDINARY_APP_BASE = `https://res.cloudinary.com/${CLOUD_NAME}/raw/upload/Pusula/01_Hacimasli2250628_3MX/App/`;
 const DEFAULT_CLOUDINARY_SCENE_BASE = `https://res.cloudinary.com/${CLOUD_NAME}/raw/upload/Pusula/01_Hacimasli2250628_3MX/`;
 const TURKKOSE_SCENE_BASE = `https://res.cloudinary.com/${CLOUD_NAME}/raw/upload/Pusula/01_20251124_TurkkoseYol_3MXWeb/`;
+const TURKKOSE_APP_BASE = `https://res.cloudinary.com/${CLOUD_NAME}/raw/upload/Pusula/01_20251124_TurkkoseYol_3MXWeb/App/`;
 
 /** /api/reality-model/p/BASE64/script/acute3d.js veya /api/reality-model/p/Scene/... (base64 yoksa varsayılan base) */
 export async function GET(
@@ -71,7 +72,7 @@ export async function GET(
       const isHaracciScene =
         subPath.includes('01_Hacimasli2250628_3MX') ||
         subPath === 'Scene/Production_5.3mx' ||
-        subPath.startsWith('Scene/Data/');
+        (subPath.startsWith('Scene/Data/') && subPath !== 'Scene/Data/root.3mxb');
       baseUrl = isHaracciScene ? DEFAULT_CLOUDINARY_SCENE_BASE : TURKKOSE_SCENE_BASE;
     }
   }
@@ -86,9 +87,12 @@ export async function GET(
     if (!res.ok && subPath.startsWith('Scene/') && !decoded) {
       const otherBase = baseUrl === TURKKOSE_SCENE_BASE ? DEFAULT_CLOUDINARY_SCENE_BASE : TURKKOSE_SCENE_BASE;
       const otherUrl = `${otherBase.replace(/\/$/, '')}/${subPath}`;
-      const resOther = await fetch(otherUrl, { headers: { 'Accept': '*/*' }, redirect: 'follow' });
-      if (resOther.ok) {
-        res = resOther;
+      let resOther = await fetch(otherUrl, { headers: { 'Accept': '*/*' }, redirect: 'follow' });
+      if (resOther.ok) res = resOther;
+      if (!res.ok && subPath === 'Scene/Data/root.3mxb') {
+        const appRootUrl = `${TURKKOSE_APP_BASE.replace(/\/$/, '')}/${subPath}`;
+        resOther = await fetch(appRootUrl, { headers: { 'Accept': '*/*' }, redirect: 'follow' });
+        if (resOther.ok) res = resOther;
       }
     }
     if (!res.ok && subPath.startsWith('Scene/') && baseUrl === DEFAULT_CLOUDINARY_SCENE_BASE) {
