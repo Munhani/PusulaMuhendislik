@@ -53,6 +53,13 @@ export async function GET(
   }
 
   let subPath = pathParts.join('/');
+  if (subPath.includes('help/index.html')) {
+    const helpHtml = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Help</title></head><body><p>Help</p></body></html>';
+    return new NextResponse(helpHtml, {
+      status: 200,
+      headers: { 'Content-Type': 'text/html; charset=utf-8', 'Content-Disposition': 'inline' },
+    });
+  }
   if (subPath === 'Scene/Production_5.3mx') {
     subPath = 'Scene/01_Hacimasli2250628_3MX.3mx';
   }
@@ -63,7 +70,7 @@ export async function GET(
       const isHaracciScene =
         subPath.includes('01_Hacimasli2250628_3MX') ||
         subPath === 'Scene/Production_5.3mx' ||
-        subPath.startsWith('Scene/Data/Production_5.');
+        subPath.startsWith('Scene/Data/');
       baseUrl = isHaracciScene ? DEFAULT_CLOUDINARY_SCENE_BASE : TURKKOSE_SCENE_BASE;
     }
   }
@@ -101,13 +108,6 @@ export async function GET(
       }
     }
 
-    if (!res.ok && subPath.includes('help/index.html')) {
-      const helpHtml = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Help</title></head><body><p>Help</p></body></html>';
-      return new NextResponse(helpHtml, {
-        status: 200,
-        headers: { 'Content-Type': 'text/html; charset=utf-8', 'Content-Disposition': 'inline' },
-      });
-    }
     if (!res.ok && subPath === 'Scene/placeholder.jpg') {
       const tinyPng = Buffer.from(
         'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==',
