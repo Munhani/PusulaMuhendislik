@@ -64,6 +64,13 @@ export async function GET(request: NextRequest) {
       body = body.replace(/(<html[^>]*>)/i, `$1<head>${headInject}</head>`);
     }
 
+    const pixelRatioPatch = '<script>(function(){var dpr=typeof window!=="undefined"&&window.devicePixelRatio?Math.min(window.devicePixelRatio,3):1;function patch(){try{if(window.THREE&&window.THREE.WebGLRenderer&&!window.THREE.WebGLRenderer.prototype._dprPatched){var O=window.THREE.WebGLRenderer.prototype;var orig=O.setPixelRatio;if(orig){O.setPixelRatio=function(r){return orig.call(this,r!=null?Math.max(dpr,Number(r)):dpr);};O._dprPatched=true;}window.dispatchEvent(new Event("resize"));}}catch(e){}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",patch);patch();window.addEventListener("load",function(){setTimeout(patch,0);setTimeout(patch,200);setTimeout(patch,800);});})();</script>';
+    if (body.includes('</body>')) {
+      body = body.replace('</body>', pixelRatioPatch + '</body>');
+    } else if (body.includes('</BODY>')) {
+      body = body.replace('</BODY>', pixelRatioPatch + '</BODY>');
+    }
+
     return new NextResponse(body, {
       status: 200,
       headers: {
