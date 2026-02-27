@@ -72,7 +72,7 @@ export default function RealityModelClient() {
 
   // Sayfa yüklendiğinde önbellekteki modelleri kontrol et
   useEffect(() => {
-    const cachedModels = ['kiptas', 'durusu', 'esenyurt', 'haraccikayasehir', 'turkkose'];
+    const cachedModels = ['kiptas', 'durusu', 'esenyurt', 'haraccikayasehir'];
     cachedModels.forEach(modelId => {
       if (modelCache.has(modelId)) {
         setIsModelLoaded(prev => ({
@@ -95,7 +95,7 @@ export default function RealityModelClient() {
         <div className="mt-4 md:mt-6 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-3 max-w-6xl mx-auto [&_button]:cursor-pointer [&_button]:relative [&_button]:z-10">
             <div className="flex flex-col gap-3">
-              {/* Arnavutköy Kiptaş: Turkkose gibi iframe modalda açılır, yeni sekme değil */}
+              {/* Arnavutköy Kiptaş: iframe modalda açılır */}
               <button
                 type="button"
                 onClick={() => {
@@ -158,24 +158,6 @@ export default function RealityModelClient() {
                 {t('haracciKayasehir')}
               </button>
             </div>
-            {/* Turkkose: Haracci ile aynı ayar — localhost yerel, production Cloudinary */}
-            <button
-              type="button"
-              onClick={() => {
-                cacheModel('turkkose');
-                const cloudinaryTurkkose = `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/raw/upload/Pusula/01_20251124_TurkkoseYol_3MXWeb/App/index.html`;
-                const isLocalhost = typeof window !== 'undefined' && window.location.hostname === 'localhost';
-                const url = process.env.NEXT_PUBLIC_TURKKOSE_MODEL_URL ?? (isLocalhost ? '/01_20251124_TurkkoseYol_3MXWeb/App/index.html' : cloudinaryTurkkose);
-                setModelViewerUrl({
-                  url,
-                  title: t('turkkose')
-                });
-              }}
-              className={`flex items-center justify-center h-[52px] w-full text-center bg-blue-900 text-white px-2 md:px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors text-sm md:text-base cursor-pointer ${isModelLoaded['turkkose'] ? 'opacity-100' : 'opacity-75'}`}
-              title="Acute3D görüntüleyici"
-            >
-              {t('turkkose')}
-            </button>
             <button
               type="button"
               onClick={() => {
