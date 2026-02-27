@@ -28,7 +28,7 @@ function ModelViewerModal({ url, title, onClose }: { url: string; title: string;
   const iframeSrc = isCloudinary ? `/api/reality-model?url=${encodeURIComponent(url)}` : url;
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-2 md:p-4" onClick={onClose} role="dialog" aria-modal="true" aria-label={title}>
-      <div className="relative w-full h-full max-w-6xl max-h-[90vh] bg-white rounded-lg shadow-xl flex flex-col" onClick={(e) => e.stopPropagation()}>
+      <div className="relative w-full h-full max-w-7xl max-h-[92vh] bg-white rounded-lg shadow-xl flex flex-col" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between px-3 py-2 border-b bg-gray-100 rounded-t-lg shrink-0">
           <span className="font-medium text-gray-800">{title}</span>
           <button
@@ -40,7 +40,7 @@ function ModelViewerModal({ url, title, onClose }: { url: string; title: string;
             ×
           </button>
         </div>
-        <div className="flex-1 min-h-[60vh] relative" style={{ minHeight: 480 }}>
+        <div className="flex-1 min-h-[70vh] md:min-h-[80vh] relative w-full" style={{ minHeight: 480 }}>
           <iframe
             key={iframeSrc}
             src={iframeSrc}
@@ -158,13 +158,16 @@ export default function RealityModelClient() {
                 {t('haracciKayasehir')}
               </button>
             </div>
-            {/* Turkkose: Cloudinary */}
+            {/* Turkkose: Haracci ile aynı ayar — localhost yerel, production Cloudinary */}
             <button
               type="button"
               onClick={() => {
                 cacheModel('turkkose');
+                const cloudinaryTurkkose = `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/raw/upload/Pusula/01_20251124_TurkkoseYol_3MXWeb/App/index.html`;
+                const isLocalhost = typeof window !== 'undefined' && window.location.hostname === 'localhost';
+                const url = process.env.NEXT_PUBLIC_TURKKOSE_MODEL_URL ?? (isLocalhost ? '/01_20251124_TurkkoseYol_3MXWeb/App/index.html' : cloudinaryTurkkose);
                 setModelViewerUrl({
-                  url: process.env.NEXT_PUBLIC_TURKKOSE_MODEL_URL ?? 'https://res.cloudinary.com/dnnelobda/raw/upload/Pusula/01_20251124_TurkkoseYol_3MXWeb/App/index.html',
+                  url,
                   title: t('turkkose')
                 });
               }}

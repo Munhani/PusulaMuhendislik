@@ -50,15 +50,18 @@ export async function GET(request: NextRequest) {
     const proxyBase = `${origin}/api/reality-model/p/${encodedBase}/`;
 
     body = body.replace(/<base\s[^>]*>/gi, '');
-    const embedStyle = '<style>html,body{height:100%;margin:0;overflow:hidden}#content,#viewer,.qx-widget{height:100%!important;min-height:100%!important}</style>';
+    const viewportMeta = /<meta[^>]+name=["']viewport["']/i.test(body) ? '' : '<meta name="viewport" content="width=device-width, initial-scale=1">';
+    const embedStyle = '<style>html,body{height:100%;margin:0;overflow:hidden;-webkit-font-smoothing:antialiased}#content,#viewer,.qx-widget{height:100%!important;min-height:100%!important}canvas{image-rendering:auto;-webkit-backface-visibility:hidden;backface-visibility:hidden}</style>';
     const acute3dPatch = '<script>(function(){var px=function(v){return typeof v==="number"?v+"px":(v||"100%");};var E=Element.prototype;if(!E.setHeight){E.setHeight=function(h){this.style.height=px(h);};E.setWidth=function(w){this.style.width=px(w);};}var O=Object.prototype;if(!O.setHeight){var sh=function(h){var el=this.getContentElement?this.getContentElement():this.dom||(this.style?this:null);if(el&&el.style)el.style.height=px(h);};var sw=function(w){var el=this.getContentElement?this.getContentElement():this.dom||(this.style?this:null);if(el&&el.style)el.style.width=px(w);};Object.defineProperty(O,"setHeight",{value:sh,writable:true,configurable:true,enumerable:false});Object.defineProperty(O,"setWidth",{value:sw,writable:true,configurable:true,enumerable:false});}})();</script>';
+    const resizeTrigger = '<script>(function(){function r(){window.dispatchEvent(new Event("resize"));}if(document.readyState==="complete")r();else window.addEventListener("load",r);setTimeout(r,100);setTimeout(r,500);})();</script>';
     const baseTag = `<base href="${proxyBase.replace(/"/g, '&quot;')}">`;
+    const headInject = viewportMeta + baseTag + embedStyle + acute3dPatch + resizeTrigger;
     if (body.includes('<head>')) {
-      body = body.replace('<head>', `<head>${baseTag}${embedStyle}${acute3dPatch}`);
+      body = body.replace('<head>', `<head>${headInject}`);
     } else if (body.includes('<HEAD>')) {
-      body = body.replace('<HEAD>', `<HEAD>${baseTag}${embedStyle}${acute3dPatch}`);
+      body = body.replace('<HEAD>', `<HEAD>${headInject}`);
     } else if (/<html/i.test(body)) {
-      body = body.replace(/(<html[^>]*>)/i, `$1<head>${baseTag}${embedStyle}${acute3dPatch}</head>`);
+      body = body.replace(/(<html[^>]*>)/i, `$1<head>${headInject}</head>`);
     }
 
     return new NextResponse(body, {
