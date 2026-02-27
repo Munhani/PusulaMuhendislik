@@ -22,10 +22,13 @@ function ModelLoading({ message }: { message: string }) {
   );
 }
 
-/** Proxy üzerinden iframe'de açıyoruz; Cloudinary X-Frame-Options ve indirme sorununu aşar */
+/** Production'da Turkkose doğrudan Cloudinary'den açılır (netlik için); diğerleri proxy üzerinden */
 function ModelViewerModal({ url, title, onClose }: { url: string; title: string; onClose: () => void }) {
   const isCloudinary = url.includes('res.cloudinary.com');
-  const iframeSrc = isCloudinary ? `/api/reality-model?url=${encodeURIComponent(url)}` : url;
+  const isTurkkose = url.includes('TurkkoseYol_3MXWeb') || url.includes('01_20251124');
+  const isLocalhost = typeof window !== 'undefined' && window.location.hostname === 'localhost';
+  const useDirect = isCloudinary && isTurkkose && !isLocalhost;
+  const iframeSrc = useDirect ? url : (isCloudinary ? `/api/reality-model?url=${encodeURIComponent(url)}` : url);
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-2 md:p-4" onClick={onClose} role="dialog" aria-modal="true" aria-label={title}>
       <div className="relative w-full h-full max-w-7xl max-h-[92vh] bg-white rounded-lg shadow-xl flex flex-col" onClick={(e) => e.stopPropagation()}>
